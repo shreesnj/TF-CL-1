@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
@@ -17,8 +17,6 @@
         "newsletter_group": {
           "type": "group",
           "settings": {
-            "link": "",
-            "open_in_new_tab": false,
             "content_direction": "row",
             "vertical_on_mobile": true,
             "horizontal_alignment": "space-between",
@@ -42,11 +40,13 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "placeholder": "",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -175,8 +175,6 @@
         "quiz_cta": {
           "type": "group",
           "settings": {
-            "link": "",
-            "open_in_new_tab": false,
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -201,11 +199,13 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 8,
-            "placeholder": "",
             "toggle_overlay": true,
             "overlay_color": "#00000080",
             "overlay_style": "solid",
             "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 20,
             "padding-block-end": 20,
             "padding-inline-start": 20,
@@ -264,7 +264,6 @@
         "quiz_cta"
       ],
       "settings": {
-        "first_block_full_width": true,
         "section_width": "page-width",
         "gap": 40,
         "color_scheme": "scheme-5",
@@ -274,14 +273,6 @@
     },
     "utilities": {
       "type": "footer-utilities",
-      "settings": {
-        "section_width": "page-width",
-        "gap": 24,
-        "divider_thickness": 1,
-        "color_scheme": "scheme-5",
-        "padding-block-start": 12,
-        "padding-block-end": 16
-      },
       "blocks": {
         "copyright": {
           "type": "footer-copyright",
@@ -294,8 +285,8 @@
         "social_icons": {
           "type": "social-links",
           "settings": {
-            "instagram_url": "https://www.instagram.com",
             "facebook_url": "https://www.facebook.com",
+            "instagram_url": "https://www.instagram.com",
             "linkedin_url": "https://www.linkedin.com"
           }
         }
@@ -303,7 +294,15 @@
       "block_order": [
         "copyright",
         "social_icons"
-      ]
+      ],
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "divider_thickness": 1,
+        "color_scheme": "scheme-5",
+        "padding-block-start": 12,
+        "padding-block-end": 16
+      }
     }
   },
   "order": [
