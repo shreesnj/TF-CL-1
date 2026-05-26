@@ -5,23 +5,29 @@
   {% liquid
     assign total_blocks = section.blocks.size
 
+    # When first block spans full width, calculate grid based on remaining blocks
+    assign effective_blocks = total_blocks
+    if section.settings.first_block_full_width and total_blocks > 1
+      assign effective_blocks = total_blocks | minus: 1
+    endif
+
     # Grid layout calculations
-    assign grid_columns = total_blocks | at_most: 4
+    assign grid_columns = effective_blocks | at_most: 5
 
     # Calculate last row counts using modulo arithmetic
-    # last_row_count = (total_blocks - 1) % N + 1
-    assign last_row_count = total_blocks | minus: 1 | modulo: 4 | plus: 1
-    assign tablet_last_row_count = total_blocks | minus: 1 | modulo: 2 | plus: 1
+    # last_row_count = (effective_blocks - 1) % grid_columns + 1
+    assign last_row_count = effective_blocks | minus: 1 | modulo: 5 | plus: 1
+    assign tablet_last_row_count = effective_blocks | minus: 1 | modulo: 2 | plus: 1
 
     # Check if there are orphaned elements (single item in last row)
     assign has_isolated_grid_item_desktop = false
     assign has_isolated_grid_item_tablet = false
 
-    if total_blocks > 4 and last_row_count == 1
+    if effective_blocks > 5 and last_row_count == 1
       assign has_isolated_grid_item_desktop = true
     endif
 
-    if total_blocks == 5
+    if effective_blocks > 2 and tablet_last_row_count == 1
       assign has_isolated_grid_item_tablet = true
     endif
   %}
@@ -29,6 +35,7 @@
     class="
       footer-content
       spacing-style
+      {% if section.settings.first_block_full_width %}footer-content--first-full-width{% endif %}
       {% if has_isolated_grid_item_desktop %}footer-content--isolated-grid-item-desktop{% endif %}
       {% if has_isolated_grid_item_tablet %}footer-content--isolated-grid-item-tablet{% endif %}
     "
@@ -68,6 +75,14 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .footer-content[style*='--grid-columns: 5'] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content--first-full-width > :first-child {
+      grid-column: 1 / -1;
+    }
+
     .footer-content--isolated-grid-item-tablet > :last-child {
       grid-column: 1 / -1;
     }
@@ -85,6 +100,45 @@
 
     .footer-content--isolated-grid-item-desktop > :last-child {
       grid-column: 1 / -1;
+    }
+
+    /* First block spans full width on desktop */
+    .footer-content--first-full-width > :first-child {
+      grid-column: 1 / -1;
+    }
+
+    /* Desktop font-size overrides for newsletter text (28px) */
+    .footer-content--first-full-width > :first-child .text-block.custom-font-size {
+      --font-size: 1.75rem;
+    }
+
+    /* Desktop font-size overrides for email-signup input (28px) */
+    .footer-content--first-full-width > :first-child .email-signup__input {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Override h5 preset uppercase on menu headings */
+  .footer-content .menu__heading {
+    text-transform: none;
+  }
+
+  /* Underline for link-styled buttons inside group blocks (quiz CTA) */
+  .footer-content .group-block .link {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* Hide quiz CTA card on mobile */
+    .footer-content .group-block:has(.background-image-container) {
+      display: none;
+    }
+
+    /* Mobile menu heading and item font sizes (14px) */
+    .footer-content .menu__heading,
+    .footer-content .menu__item {
+      font-size: 0.875rem;
+      line-height: 1.43;
     }
   }
 {% endstylesheet %}
@@ -141,6 +195,12 @@
     "groups": ["footer"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "first_block_full_width",
+      "label": "First block full width",
+      "default": false
+    },
     {
       "type": "select",
       "id": "section_width",
