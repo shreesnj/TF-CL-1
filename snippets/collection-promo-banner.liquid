@@ -1,0 +1,54 @@
+{% doc %}
+  Collection Promo Banner
+
+  Renders a promotional banner card for the collection grid interstitial.
+  Displays a background image with badge pill, heading text, and CTA button.
+
+  @param {object} image - Shopify image object for the background
+  @param {string} badge_text - Badge pill text (e.g. "LIMITED OFFER")
+  @param {string} heading - Large heading text
+  @param {string} button_text - CTA button label
+  @param {string} button_url - CTA button link URL
+{% enddoc %}
+
+{% liquid
+  assign image = image | default: blank
+  assign badge_text = badge_text | default: ''
+  assign heading = heading | default: ''
+  assign button_text = button_text | default: 'Shop Now'
+  assign button_url = button_url | default: '#'
+%}
+
+<div class="collection-promo-banner">
+  {% if image != blank %}
+    <div class="collection-promo-banner__media">
+      {% assign sizes_val = '(min-width: 750px) 66vw, 100vw' %}
+      {{
+        image
+        | image_url: width: image.width
+        | image_tag:
+          sizes: sizes_val,
+          widths: '375,550,750,1100,1500',
+          loading: 'lazy',
+          class: 'collection-promo-banner__image',
+          alt: heading
+      }}
+    </div>
+  {% endif %}
+
+  <div class="collection-promo-banner__content">
+    {% if badge_text != blank %}
+      <span class="collection-promo-banner__badge">{{ badge_text }}</span>
+    {% endif %}
+
+    {% if heading != blank %}
+      <h3 class="collection-promo-banner__heading">{{ heading }}</h3>
+    {% endif %}
+
+    {% if button_text != blank %}
+      <a href="{{ button_url }}" class="collection-promo-banner__button">
+        {{ button_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>

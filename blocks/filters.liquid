@@ -1307,6 +1307,166 @@
     height: var(--font-paragraph--size);
     position: absolute;
   }
+
+  /* Custom filter styles — pill-shaped triggers, reordered layout */
+
+  /* Desktop: Position count left, filters right */
+  .facets--horizontal .facets__form {
+    @media screen and (min-width: 750px) {
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .facets--horizontal .products-count-wrapper {
+    @media screen and (min-width: 750px) {
+      order: -1;
+      margin-left: 0;
+      margin-right: auto;
+      color: #797D86;
+      font-size: 16px;
+    }
+  }
+
+  /* Pill-shaped filter summary triggers */
+  .facets--horizontal .facets__summary {
+    @media screen and (min-width: 750px) {
+      border-radius: 100px;
+      border: 1px solid #D3D8DD;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+  }
+
+  .facets--horizontal .facets__filters-wrapper {
+    @media screen and (min-width: 750px) {
+      column-gap: 32px;
+    }
+  }
+
+  /* Mobile: pill-shaped filter toggle button */
+  .facets-toggle__button {
+    border-radius: 100px;
+    border: 1px solid #D3D8DD;
+    padding: 10px 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.12px;
+  }
+
+  /* Mobile products count */
+  .facets-toggle {
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .facets-toggle .facets-mobile-wrapper {
+    color: #797D86;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.12px;
+  }
+
+  /* Drawer: filter group headers */
+  .facets--drawer .facets__summary {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.52px;
+    line-height: 18px;
+  }
+
+  .facets--drawer .facets__summary .icon-caret {
+    color: #3383C5;
+  }
+
+  /* Drawer: separator lines between filter groups */
+  .facets--drawer .facets__item::before {
+    border-top-color: var(--color-border);
+  }
+
+  /* Drawer: custom checkbox styles */
+  .facets--drawer .facets__inputs-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid #202635;
+    border-radius: 0;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .facets--drawer .facets__inputs-list input[type="checkbox"]:checked {
+    background-color: #202635;
+  }
+
+  .facets--drawer .facets__inputs-list input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 13px;
+    height: 9px;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='9' viewBox='0 0 13 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4.5L4.5 8L12 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .facets--drawer .facets__inputs-list label {
+    font-size: 16px;
+    line-height: 22px;
+    color: #202635;
+  }
+
+  /* Drawer: title with count */
+  .facets-drawer__title {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    font-weight: 400;
+  }
+
+  /* Drawer: action buttons */
+  .facets__drawer-actions .facets__see-results {
+    background-color: #3383C5;
+    color: #FFFFFF;
+    border-radius: 60px;
+    padding: 10px 24px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border: none;
+    min-width: auto;
+  }
+
+  .facets__drawer-actions .facets__see-results:hover {
+    opacity: 0.9;
+  }
+
+  .facets__drawer-actions .facets__clear-all {
+    border: 1px solid #202635;
+    border-radius: 60px;
+    padding: 10px 24px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    background-color: transparent;
+    color: #202635;
+    min-width: auto;
+    box-shadow: none;
+  }
+
+  .facets__drawer-actions .facets__clear-all:hover {
+    opacity: 0.85;
+  }
 {% endstylesheet %}
 
 {% schema %}

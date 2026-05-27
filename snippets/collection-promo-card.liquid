@@ -1,0 +1,61 @@
+{% doc %}
+  Collection Promo Card
+
+  Renders an info/quiz promotional card for the collection grid interstitial.
+  Dark background with background image overlay, centered white content.
+
+  @param {object} image - Shopify image object for the background
+  @param {string} subtitle - Small uppercase subtitle (e.g. "TITLE HERE")
+  @param {string} heading - Main heading text
+  @param {string} body - Body copy text
+  @param {string} button_text - CTA button label
+  @param {string} button_url - CTA button link URL
+{% enddoc %}
+
+{% liquid
+  assign image = image | default: blank
+  assign subtitle = subtitle | default: ''
+  assign heading = heading | default: ''
+  assign body = body | default: ''
+  assign button_text = button_text | default: 'Take the Quiz'
+  assign button_url = button_url | default: '#'
+%}
+
+<div class="collection-promo-card">
+  {% if image != blank %}
+    <div class="collection-promo-card__media">
+      {% assign sizes_val = '(min-width: 750px) 33vw, 100vw' %}
+      {{
+        image
+        | image_url: width: image.width
+        | image_tag:
+          sizes: sizes_val,
+          widths: '375,550,750,1100',
+          loading: 'lazy',
+          class: 'collection-promo-card__image',
+          alt: heading
+      }}
+    </div>
+    <div class="collection-promo-card__overlay"></div>
+  {% endif %}
+
+  <div class="collection-promo-card__content">
+    {% if subtitle != blank %}
+      <span class="collection-promo-card__subtitle">{{ subtitle }}</span>
+    {% endif %}
+
+    {% if heading != blank %}
+      <h3 class="collection-promo-card__heading">{{ heading }}</h3>
+    {% endif %}
+
+    {% if body != blank %}
+      <p class="collection-promo-card__body">{{ body }}</p>
+    {% endif %}
+
+    {% if button_text != blank %}
+      <a href="{{ button_url }}" class="collection-promo-card__button">
+        {{ button_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>

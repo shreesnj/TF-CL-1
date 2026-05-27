@@ -1,0 +1,173 @@
+{% liquid
+  assign gradient_opacity = section.settings.gradient_opacity | times: 1.0 | divided_by: 100.0
+  assign color_start = section.settings.gradient_color_start
+  assign color_end = section.settings.gradient_color_end
+  assign start_r = color_start | color_extract: 'red'
+  assign start_g = color_start | color_extract: 'green'
+  assign start_b = color_start | color_extract: 'blue'
+  assign end_r = color_end | color_extract: 'red'
+  assign end_g = color_end | color_extract: 'green'
+  assign end_b = color_end | color_extract: 'blue'
+%}
+
+<div
+  class="collection-hero color-{{ section.settings.color_scheme }}"
+  style="
+    --collection-hero-padding-top: {{ section.settings.padding-block-start }}px;
+    --collection-hero-padding-bottom: {{ section.settings.padding-block-end }}px;
+    --collection-hero-gradient: linear-gradient(90deg, rgba({{ start_r }}, {{ start_g }}, {{ start_b }}, {{ gradient_opacity }}), rgba({{ end_r }}, {{ end_g }}, {{ end_b }}, {{ gradient_opacity }}));
+  "
+>
+  <div class="collection-hero__gradient"></div>
+  <div class="page-width">
+    <div class="collection-hero__content">
+      {% if collection.title != blank %}
+        <h1 class="collection-hero__heading">{{ collection.title }}</h1>
+      {% endif %}
+
+      {% if collection.description != blank %}
+        <div class="collection-hero__description">{{ collection.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection-hero {
+    position: relative;
+    padding-block-start: var(--collection-hero-padding-top, 48px);
+    padding-block-end: var(--collection-hero-padding-bottom, 48px);
+    overflow: hidden;
+  }
+
+  .collection-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background: var(--collection-hero-gradient);
+    z-index: 0;
+  }
+
+  .collection-hero .page-width {
+    position: relative;
+    z-index: 1;
+  }
+
+  .collection-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 495px;
+  }
+
+  .collection-hero__heading {
+    font-size: 56px;
+    line-height: 73px;
+    letter-spacing: -1.12px;
+    font-weight: 400;
+    margin: 0;
+    color: var(--color-foreground);
+  }
+
+  .collection-hero__description {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 400;
+    color: var(--color-foreground);
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-hero {
+      padding-inline: 18px;
+    }
+
+    .collection-hero__content {
+      gap: 12px;
+      max-width: 100%;
+    }
+
+    .collection-hero__heading {
+      font-size: 30px;
+      line-height: 36px;
+      letter-spacing: -0.6px;
+    }
+
+    .collection-hero__description {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection hero",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Gradient"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_start",
+      "label": "Gradient start color",
+      "default": "#C1EFFA"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_end",
+      "label": "Gradient end color",
+      "default": "#8DCEF9"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "label": "Gradient opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection hero"
+    }
+  ]
+}
+{% endschema %}

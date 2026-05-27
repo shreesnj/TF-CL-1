@@ -46,9 +46,50 @@
       {% assign products_per_page = section.settings.products_per_page %}
     {% endif %}
 
+    {% if section.settings.section_title != blank %}
+      <h2 class="collection__section-title" style="grid-column: var(--centered);">
+        {{ section.settings.section_title }}
+      </h2>
+    {% endif %}
+
     {% paginate collection.products by products_per_page %}
       {% capture children %}
         {% for product in collection.products %}
+          {% if section.settings.promo_banner_enabled and forloop.index == section.settings.promo_banner_position %}
+            <li class="product-grid__item product-grid__promo product-grid__promo--banner">
+              {% render 'collection-promo-banner',
+                image: section.settings.promo_banner_image,
+                badge_text: section.settings.promo_banner_badge_text,
+                heading: section.settings.promo_banner_heading,
+                button_text: section.settings.promo_banner_button_text,
+                button_url: section.settings.promo_banner_button_url
+              %}
+            </li>
+          {% endif %}
+
+          {% if section.settings.section_divider_enabled and forloop.index == section.settings.section_divider_position %}
+            <li class="product-grid__section-divider">
+              {% if section.settings.section_divider_text != blank %}
+                <h2 class="collection__section-title collection__section-title--inline">
+                  {{ section.settings.section_divider_text }}
+                </h2>
+              {% endif %}
+            </li>
+          {% endif %}
+
+          {% if section.settings.promo_card_enabled and forloop.index == section.settings.promo_card_position %}
+            <li class="product-grid__item product-grid__promo product-grid__promo--card">
+              {% render 'collection-promo-card',
+                image: section.settings.promo_card_image,
+                subtitle: section.settings.promo_card_subtitle,
+                heading: section.settings.promo_card_heading,
+                body: section.settings.promo_card_body,
+                button_text: section.settings.promo_card_button_text,
+                button_url: section.settings.promo_card_button_url
+              %}
+            </li>
+          {% endif %}
+
           <li
             id="{{ section.id }}-{{ product.id }}"
             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
@@ -73,6 +114,284 @@
     {% endpaginate %}
   </div>
 </results-list>
+
+{% stylesheet %}
+  .collection__section-title {
+    font-size: 36px;
+    line-height: 47px;
+    letter-spacing: -0.36px;
+    font-weight: 400;
+    color: var(--color-foreground);
+    margin: 0;
+    padding-block-start: 16px;
+  }
+
+  .collection__section-title--inline {
+    padding-block-start: 0;
+  }
+
+  .product-grid__promo--banner {
+    grid-column: span 2;
+    min-width: 0;
+  }
+
+  .product-grid__section-divider {
+    grid-column: 1 / -1;
+    padding-block-start: 32px;
+  }
+
+  .product-grid__promo--card {
+    min-width: 0;
+  }
+
+  /* Promo banner styles */
+  .collection-promo-banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 495px;
+    overflow: hidden;
+    border-radius: var(--style-border-radius, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .collection-promo-banner__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .collection-promo-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-promo-banner__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 24px;
+    max-width: 670px;
+  }
+
+  .collection-promo-banner__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 24px;
+    border: 1px solid #F2F7FB;
+    border-radius: 50px;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.72px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  .collection-promo-banner__heading {
+    font-size: 56px;
+    line-height: 73px;
+    letter-spacing: -1.12px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .collection-promo-banner__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 34px;
+    background-color: #FFFFFF;
+    color: #202635;
+    border-radius: 57px;
+    font-size: 16px;
+    line-height: 23px;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--animation-speed, 0.2s) var(--animation-easing, ease);
+  }
+
+  .collection-promo-banner__button:hover {
+    opacity: 0.85;
+  }
+
+  /* Promo card styles */
+  .collection-promo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 495px;
+    overflow: hidden;
+    border-radius: var(--style-border-radius, 0);
+    background-color: #202635;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .collection-promo-card__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .collection-promo-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+  }
+
+  .collection-promo-card__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #202635;
+    opacity: 0.7;
+    mix-blend-mode: multiply;
+  }
+
+  .collection-promo-card__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 24px;
+    max-width: 430px;
+  }
+
+  .collection-promo-card__subtitle {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.56px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  .collection-promo-card__heading {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.28px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .collection-promo-card__body {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .collection-promo-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 34px;
+    background-color: #FFFFFF;
+    color: #202635;
+    border-radius: 57px;
+    font-size: 16px;
+    line-height: 23px;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity var(--animation-speed, 0.2s) var(--animation-easing, ease);
+  }
+
+  .collection-promo-card__button:hover {
+    opacity: 0.85;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection__section-title {
+      font-size: 22px;
+      line-height: 29px;
+      letter-spacing: -0.22px;
+    }
+
+    .product-grid__promo--banner {
+      grid-column: 1 / -1;
+    }
+
+    .product-grid__section-divider {
+      padding-block-start: 24px;
+    }
+
+    .collection-promo-banner {
+      min-height: 300px;
+    }
+
+    .collection-promo-banner__badge {
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: 0.52px;
+      padding: 6px 18px;
+    }
+
+    .collection-promo-banner__heading {
+      font-size: 30px;
+      line-height: 36px;
+      letter-spacing: -0.6px;
+    }
+
+    .collection-promo-banner__button {
+      padding: 10px 24px;
+      font-size: 14px;
+      line-height: 20px;
+      border-radius: 60px;
+    }
+
+    .collection-promo-banner__content {
+      gap: 6px;
+      padding: 24px 12px;
+    }
+
+    .collection-promo-card {
+      min-height: 388px;
+    }
+
+    .collection-promo-card__content {
+      gap: 8px;
+      padding: 24px 12px;
+    }
+
+    .collection-promo-card__subtitle {
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.4px;
+    }
+
+    .collection-promo-card__heading {
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: -0.2px;
+    }
+
+    .collection-promo-card__body {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.14px;
+    }
+
+    .collection-promo-card__button {
+      padding: 10px 24px;
+      font-size: 14px;
+      line-height: 20px;
+      border-radius: 60px;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -250,6 +569,129 @@
       "step": 1,
       "unit": "px",
       "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Section title"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title"
+    },
+    {
+      "type": "header",
+      "content": "Promo banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_banner_enabled",
+      "label": "Enable promo banner",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "promo_banner_position",
+      "label": "Position in grid",
+      "default": 4
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_banner_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "promo_banner_badge_text",
+      "label": "Badge text",
+      "default": "LIMITED OFFER"
+    },
+    {
+      "type": "text",
+      "id": "promo_banner_heading",
+      "label": "Heading",
+      "default": "Subscribe and save 10% off replacement filters"
+    },
+    {
+      "type": "text",
+      "id": "promo_banner_button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "promo_banner_button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Section divider"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_divider_enabled",
+      "label": "Enable section divider",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "section_divider_position",
+      "label": "Position in grid",
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "section_divider_text",
+      "label": "Divider title",
+      "default": "Section Title"
+    },
+    {
+      "type": "header",
+      "content": "Promo card"
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_card_enabled",
+      "label": "Enable promo card",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "promo_card_position",
+      "label": "Position in grid",
+      "default": 11
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_card_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "promo_card_subtitle",
+      "label": "Subtitle",
+      "default": "TITLE HERE"
+    },
+    {
+      "type": "text",
+      "id": "promo_card_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "promo_card_body",
+      "label": "Body text"
+    },
+    {
+      "type": "text",
+      "id": "promo_card_button_text",
+      "label": "Button text",
+      "default": "Take the Quiz"
+    },
+    {
+      "type": "url",
+      "id": "promo_card_button_url",
+      "label": "Button link"
     }
   ],
   "presets": []

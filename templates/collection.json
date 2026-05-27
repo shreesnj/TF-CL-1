@@ -1,99 +1,12 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
-    "section": {
-      "type": "section",
-      "blocks": {
-        "text_tqQTNE": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_twGGkJ": {
-          "type": "text",
-          "name": "Description",
-          "settings": {
-            "text": "{{ closest.collection.description }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_tqQTNE",
-        "text_twGGkJ"
-      ],
-      "name": "Collection heading",
+    "hero": {
+      "type": "collection-hero",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
         "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
+        "gradient_color_start": "#C1EFFA",
+        "gradient_color_end": "#8DCEF9",
+        "gradient_opacity": 20,
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -111,8 +24,8 @@
             "text_label_case": "default",
             "show_swatch_label": false,
             "show_filter_label": false,
-            "enable_sorting": true,
-            "enable_grid_density": true,
+            "enable_sorting": false,
+            "enable_grid_density": false,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "padding-block-start": 8,
@@ -155,6 +68,17 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "review_block": {
+              "type": "review",
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "rating_color": "primary",
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "left"
+              }
             },
             "product_title_4nY4eT": {
               "type": "product-title",
@@ -217,6 +141,7 @@
           },
           "block_order": [
             "card-gallery",
+            "review_block",
             "product_title_4nY4eT",
             "price_EzJzMm",
             "swatches"
@@ -229,18 +154,35 @@
         "mobile_product_card_size": "small",
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 16,
-        "columns_gap_vertical": 24,
+        "columns_gap_horizontal": 32,
+        "columns_gap_vertical": 32,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "color_scheme": "scheme-1",
         "padding-block-start": 0,
-        "padding-block-end": 32
+        "padding-block-end": 32,
+        "section_title": "Section Title",
+        "promo_banner_enabled": true,
+        "promo_banner_position": 4,
+        "promo_banner_badge_text": "LIMITED OFFER",
+        "promo_banner_heading": "Subscribe and save 10% off replacement filters",
+        "promo_banner_button_text": "Shop Now",
+        "promo_banner_image": "shopify://shop_images/mask-group-86-2x-4393e45b-d417-4f41-8501-23a48fb0c6bf-1-desktop-18491671.png",
+        "section_divider_enabled": true,
+        "section_divider_position": 7,
+        "section_divider_text": "Section Title",
+        "promo_card_enabled": true,
+        "promo_card_position": 11,
+        "promo_card_image": "shopify://shop_images/pexels-photo-7108218-desktop-18491738.jpg",
+        "promo_card_subtitle": "TITLE HERE",
+        "promo_card_heading": "Common contaminants such as Flouride, Chromium-6, PFAS / PFOAs and Microplastics can lead to undiagnosed health issues.",
+        "promo_card_body": "Our Affinity® Filtration Technology safely removes up to 99.99% of over 365+ harmful contaminants typically found in your tap water without the need to worry about remineralizing lorem ipsum ed.",
+        "promo_card_button_text": "Take the Quiz"
       }
     }
   },
   "order": [
-    "section",
+    "hero",
     "main"
   ]
 }
