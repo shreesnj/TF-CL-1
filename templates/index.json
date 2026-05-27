@@ -939,6 +939,8 @@
     }
   },
   "order": [
+    "hero_jVaWmY",
+    "marquee_trust_bar",
     "shop_by_category_kX7mR2",
     "shop_by_bestsellers_Bx4mK1",
     "shop_by_system_Qx8mN3",
@@ -948,8 +950,6 @@
     "product_list_fa6P9H",
     "trust_reviews",
     "from_the_blog",
-    "faq_section",
-    "hero_jVaWmY",
-    "marquee_trust_bar"
+    "faq_section"
   ]
 }
