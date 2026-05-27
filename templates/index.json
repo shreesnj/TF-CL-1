@@ -9,85 +9,6 @@
  */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h1>Get complete confidence in your water</h1>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "clamp(32px, 4.7vw, 64px)",
-            "line_height": "1.2",
-            "letter_spacing": "-0.02em",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop All Products",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/image-12-mobile-18492742.png",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 28,
-        "section_width": "page-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#0000004D",
-        "overlay_color_mobile": "#0000007A",
-        "overlay_style": "gradient",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 40,
-        "padding-block-end": 60
-      }
-    },
     "shop_by_category_kX7mR2": {
       "type": "shop-by-category",
       "blocks": {
@@ -95,42 +16,48 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-1-mobile-18492663.png",
-            "title": "Filtered Pitcher"
+            "title": "Filtered Pitcher",
+            "link": ""
           }
         },
         "category_2": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-2-mobile-18492709.png",
-            "title": "Water Bottles"
+            "title": "Water Bottles",
+            "link": ""
           }
         },
         "category_3": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-3-mobile-18492714.png",
-            "title": "Under Sink System"
+            "title": "Under Sink System",
+            "link": ""
           }
         },
         "category_4": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-4-mobile-18492719.png",
-            "title": "Fridge Filter"
+            "title": "Fridge Filter",
+            "link": ""
           }
         },
         "category_5": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-5-mobile-18492724.png",
-            "title": "Replacement Filters"
+            "title": "Replacement Filters",
+            "link": ""
           }
         },
         "category_6": {
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image-6-mobile-18492729.png",
-            "title": "Accessories"
+            "title": "Accessories",
+            "link": ""
           }
         }
       },
@@ -153,14 +80,65 @@
     "shop_by_bestsellers_Bx4mK1": {
       "type": "shop-by-bestsellers",
       "settings": {
-        "heading": "Shop Best Sellers",
         "collection": "all",
+        "heading": "Shop Best Sellers",
         "max_products": 16,
         "show_reviews": true,
         "button_text": "Shop All Products",
+        "button_url": "",
         "mobile_link_text": "Shop All",
         "section_width": "page-width",
         "color_scheme": "scheme-2",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "shop_by_system_Qx8mN3": {
+      "type": "shop-by-system",
+      "blocks": {
+        "category_pitcher": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-46-pm-1-mobile-18492758.png",
+            "title": "Pitcher",
+            "link": ""
+          }
+        },
+        "category_bottles": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-40-pm-1-mobile-18492762.png",
+            "title": "Bottles",
+            "link": ""
+          }
+        },
+        "category_fridge_filter": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-34-pm-1-desktop-18492479.png",
+            "title": "Fridge Filter",
+            "link": ""
+          }
+        },
+        "category_under_sink": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-26-pm-1-desktop-18492483.png",
+            "title": "Under Sink System",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_pitcher",
+        "category_bottles",
+        "category_fridge_filter",
+        "category_under_sink"
+      ],
+      "settings": {
+        "heading": "Shop by System",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -175,8 +153,9 @@
         "content_heading": "Our biggest (and best bottle) just dropped",
         "content_text": "Go big with the bottle designed for more freedom and fewer refills. The comfort-grip handle makes it easy to grab and go, it fits standard cup holders like a glove, and it cleans every drop.",
         "button_text": "Shop 42oz Now",
-        "gradient_color_start": "#C1EFFA",
-        "gradient_color_end": "#8DCEF9",
+        "button_url": "",
+        "gradient_color_start": "#c1effa",
+        "gradient_color_end": "#8dcef9",
         "gradient_opacity": 50,
         "color_scheme": "scheme-1",
         "section_width": "full-width",
@@ -230,61 +209,18 @@
         "heading": "Advanced filters that set a new standard",
         "description": "Our breakthrough filtration technology targets up to 73x more dangerous chemicals, contaminants, & toxins than typical carbon filters.",
         "primary_button_text": "Our Technology",
+        "primary_button_url": "",
         "secondary_button_text": "Lab Test Results",
+        "secondary_button_url": "",
         "filter_image": "shopify://shop_images/exploding-filter2-1200x-1-2-mobile-18492617.png",
         "background_image": "shopify://shop_images/vid-bg-mobile-18492609.png",
         "video_thumbnail": "shopify://shop_images/larq-pitcher-step-1-2-mobile-18492611.png",
         "video_label": "See it in action",
+        "video_url": "",
         "color_scheme": "scheme-5",
         "section_width": "full-width",
         "padding-block-start": 72,
         "padding-block-end": 0
-      }
-    },
-    "shop_by_system_Qx8mN3": {
-      "type": "shop-by-system",
-      "blocks": {
-        "category_pitcher": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-46-pm-1-mobile-18492758.png",
-            "title": "Pitcher"
-          }
-        },
-        "category_bottles": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-40-pm-1-mobile-18492762.png",
-            "title": "Bottles"
-          }
-        },
-        "category_fridge_filter": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-34-pm-1-desktop-18492479.png",
-            "title": "Fridge Filter"
-          }
-        },
-        "category_under_sink": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-26-pm-1-desktop-18492483.png",
-            "title": "Under Sink System"
-          }
-        }
-      },
-      "block_order": [
-        "category_pitcher",
-        "category_bottles",
-        "category_fridge_filter",
-        "category_under_sink"
-      ],
-      "settings": {
-        "heading": "Shop by System",
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
       }
     },
     "product_list_fa6P9H": {
@@ -460,6 +396,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.featured_collection",
       "settings": {
         "collection": "all",
@@ -518,6 +455,11 @@
         "review_adam"
       ],
       "settings": {
+        "subtitle": "COMPLETE CONFIDENCE IN YOUR WATER",
+        "heading": "Trusted by more than 10,000+ customers.",
+        "heading_highlight": "10,000+",
+        "button_text": "Read All Reviews",
+        "button_url": "",
         "section_width": "full-width",
         "color_scheme": "scheme-1",
         "padding-block-start": 60,
@@ -527,120 +469,16 @@
     "from_the_blog": {
       "type": "from-the-blog",
       "settings": {
+        "blog": "",
         "heading": "From the Blog",
         "button_text": "View All",
         "mobile_button_text": "View All Articles",
+        "button_url": "",
         "post_count": 3,
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
-    },
-    "marquee_trust_bar": {
-      "type": "marquee",
-      "blocks": {
-        "icon_1": {
-          "type": "icon",
-          "settings": {
-            "icon": "check_box",
-            "width": 20
-          }
-        },
-        "text_1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>MADE IN THE USA WITH MEDICAL-GRADE MATERIALS</p>",
-            "width": "fit-content",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          }
-        },
-        "icon_2": {
-          "type": "icon",
-          "settings": {
-            "icon": "clipboard",
-            "width": 20
-          }
-        },
-        "text_2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>LAB TESTED & VERIFIED BY EPA/NSF STANDARDS</p>",
-            "width": "fit-content",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          }
-        },
-        "icon_3": {
-          "type": "icon",
-          "settings": {
-            "icon": "star",
-            "width": 20
-          }
-        },
-        "text_3": {
-          "type": "text",
-          "settings": {
-            "text": "<p>LIMITED LIFETIME WARRANTY</p>",
-            "width": "fit-content",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          }
-        }
-      },
-      "block_order": [
-        "icon_1",
-        "text_1",
-        "icon_2",
-        "text_2",
-        "icon_3",
-        "text_3"
-      ],
-      "settings": {
-        "movement_direction": "normal",
-        "color_scheme": "scheme-5",
-        "padding-block-start": 38,
-        "padding-block-end": 38,
-        "gap_between_elements": 48,
-        "show_gradient_bar": true,
-        "gradient_bar_height": 4,
-        "gradient_color_start": "#2179C2",
-        "gradient_color_mid": "#8DCEF9",
-        "gradient_color_end": "#F1DCC1"
       }
     },
     "faq_section": {
@@ -650,6 +488,9 @@
           "type": "text",
           "settings": {
             "text": "<h2>Frequently Asked Questions</h2>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
             "type_preset": "h2",
             "font": "var(--font-body--family)",
             "font_size": "",
@@ -657,14 +498,16 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "width": "100%",
-            "max_width": "none",
-            "alignment": "left",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {}
         },
         "faq_accordion": {
           "type": "accordion",
@@ -687,14 +530,19 @@
             "row_1": {
               "type": "_accordion-row",
               "settings": {
+                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
                 "open_by_default": true,
-                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text_1": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "",
@@ -702,28 +550,38 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_1"]
+              "block_order": [
+                "text_1"
+              ]
             },
             "row_2": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text_1": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "",
@@ -731,28 +589,38 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_1"]
+              "block_order": [
+                "text_1"
+              ]
             },
             "row_3": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text_1": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "",
@@ -760,28 +628,38 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_1"]
+              "block_order": [
+                "text_1"
+              ]
             },
             "row_4": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
+                "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
               },
               "blocks": {
                 "text_1": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "",
@@ -789,33 +667,47 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  }
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_1"]
+              "block_order": [
+                "text_1"
+              ]
             }
           },
-          "block_order": ["row_1", "row_2", "row_3", "row_4"]
+          "block_order": [
+            "row_1",
+            "row_2",
+            "row_3",
+            "row_4"
+          ]
         }
       },
-      "block_order": ["heading_text", "faq_accordion"],
+      "block_order": [
+        "heading_text",
+        "faq_accordion"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
+        "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 40,
         "section_width": "page-width",
         "section_height": "",
+        "section_height_custom": 50,
         "color_scheme": "scheme-2",
         "background_media": "none",
         "video_position": "cover",
@@ -824,14 +716,229 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
         "padding-block-start": 80,
         "padding-block-end": 80
+      }
+    },
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>Get complete confidence in your water</h1>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "clamp(32px, 4.7vw, 64px)",
+            "line_height": "1.2",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop All Products",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "button_H9gpTf"
+      ],
+      "name": "Complete Confidence",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/image-12-mobile-18492742.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 28,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#0000004d",
+        "overlay_color_mobile": "#0000007a",
+        "overlay_style": "gradient",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 60
+      }
+    },
+    "marquee_trust_bar": {
+      "type": "marquee",
+      "blocks": {
+        "icon_1": {
+          "type": "icon",
+          "settings": {
+            "icon": "check_box",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>MADE IN THE USA WITH MEDICAL-GRADE MATERIALS</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon": "clipboard",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LAB TESTED & VERIFIED BY EPA/NSF STANDARDS</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_3": {
+          "type": "icon",
+          "settings": {
+            "icon": "star",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LIMITED LIFETIME WARRANTY</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "text_1",
+        "icon_2",
+        "text_2",
+        "icon_3",
+        "text_3"
+      ],
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-5",
+        "padding-block-start": 38,
+        "padding-block-end": 38,
+        "gap_between_elements": 48,
+        "show_gradient_bar": true,
+        "gradient_bar_height": 4,
+        "gradient_color_start": "#2179c2",
+        "gradient_color_mid": "#8dcef9",
+        "gradient_color_end": "#f1dcc1"
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "marquee_trust_bar",
     "shop_by_category_kX7mR2",
     "shop_by_bestsellers_Bx4mK1",
     "shop_by_system_Qx8mN3",
@@ -841,6 +948,8 @@
     "product_list_fa6P9H",
     "trust_reviews",
     "from_the_blog",
-    "faq_section"
+    "faq_section",
+    "hero_jVaWmY",
+    "marquee_trust_bar"
   ]
 }
