@@ -1,0 +1,414 @@
+{% liquid
+  assign gradient_start_r = section.settings.gradient_color_start | color_extract: 'red'
+  assign gradient_start_g = section.settings.gradient_color_start | color_extract: 'green'
+  assign gradient_start_b = section.settings.gradient_color_start | color_extract: 'blue'
+  assign gradient_end_r = section.settings.gradient_color_end | color_extract: 'red'
+  assign gradient_end_g = section.settings.gradient_color_end | color_extract: 'green'
+  assign gradient_end_b = section.settings.gradient_color_end | color_extract: 'blue'
+  assign gradient_alpha = section.settings.gradient_opacity | divided_by: 100.0
+%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} experience-editorial color-{{ section.settings.color_scheme }} spacing-style"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%}
+  "
+>
+  {% if section.settings.section_subheading != blank or section.settings.section_heading != blank %}
+    <div class="experience-editorial__headline">
+      {% if section.settings.section_subheading != blank %}
+        <p class="experience-editorial__section-subheading">{{ section.settings.section_subheading | escape }}</p>
+      {% endif %}
+      {% if section.settings.section_heading != blank %}
+        <h2 class="experience-editorial__section-heading">{{ section.settings.section_heading | escape }}</h2>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="experience-editorial__grid">
+    <div class="experience-editorial__image-wrapper">
+      {% if section.settings.image != blank %}
+        {%- assign sizes_val = '(min-width: 750px) 50vw, 100vw' -%}
+        {{
+          section.settings.image
+          | image_url: width: section.settings.image.width
+          | image_tag:
+            sizes: sizes_val,
+            widths: '375,550,750,1100,1500',
+            loading: 'lazy',
+            class: 'experience-editorial__image',
+            alt: section.settings.image.alt
+        }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'experience-editorial__placeholder' }}
+      {% endif %}
+    </div>
+
+    <div class="experience-editorial__content">
+      <div class="experience-editorial__content-inner">
+        <div class="experience-editorial__text-group">
+          {% if section.settings.content_subheading != blank %}
+            <p class="experience-editorial__content-subheading">{{ section.settings.content_subheading | escape }}</p>
+          {% endif %}
+          {% if section.settings.content_heading != blank %}
+            <h3 class="experience-editorial__content-heading">{{ section.settings.content_heading | escape }}</h3>
+          {% endif %}
+          {% if section.settings.content_text != blank %}
+            <p class="experience-editorial__content-text">{{ section.settings.content_text | escape }}</p>
+          {% endif %}
+        </div>
+
+        {% if section.settings.button_text != blank %}
+          <div class="experience-editorial__cta">
+            <a
+              {% if section.settings.button_url != blank %}
+                href="{{ section.settings.button_url }}"
+              {% endif %}
+              class="button"
+            >
+              {{ section.settings.button_text | escape }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .experience-editorial__content {
+    background: linear-gradient(
+      90deg,
+      rgba({{ gradient_start_r }}, {{ gradient_start_g }}, {{ gradient_start_b }}, {{ gradient_alpha }}) 0%,
+      rgba({{ gradient_end_r }}, {{ gradient_end_g }}, {{ gradient_end_b }}, {{ gradient_alpha }}) 100%
+    );
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .experience-editorial__headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding-block-end: 48px;
+  }
+
+  .experience-editorial__section-subheading {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-style: var(--font-heading--style);
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0.52px;
+    text-transform: uppercase;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .experience-editorial__section-heading {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-style: var(--font-heading--style);
+    font-size: clamp(26px, 2vw + 16px, 42px);
+    line-height: 1.31;
+    letter-spacing: -0.52px;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .experience-editorial__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .experience-editorial__image-wrapper {
+    overflow: hidden;
+    aspect-ratio: 354 / 318;
+  }
+
+  .experience-editorial__image,
+  .experience-editorial__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .experience-editorial__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .experience-editorial__content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 16px;
+    width: 100%;
+  }
+
+  .experience-editorial__text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .experience-editorial__content-subheading {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-style: var(--font-heading--style);
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0.52px;
+    text-transform: uppercase;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .experience-editorial__content-heading {
+    font-family: var(--font-heading--family);
+    font-weight: var(--font-heading--weight);
+    font-style: var(--font-heading--style);
+    font-size: clamp(22px, 1.5vw + 14px, 36px);
+    line-height: 1.31;
+    letter-spacing: -0.22px;
+    color: var(--color-foreground-heading);
+    margin: 0;
+  }
+
+  .experience-editorial__content-text {
+    font-family: var(--font-body--family);
+    font-weight: var(--font-body--weight);
+    font-style: var(--font-body--style);
+    font-size: clamp(14px, 0.5vw + 12px, 18px);
+    line-height: 1.43;
+    letter-spacing: 0.14px;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .experience-editorial__cta {
+    display: flex;
+    align-items: center;
+  }
+
+  .experience-editorial__cta .button {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 24px 12px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .experience-editorial__headline {
+      gap: 16px;
+    }
+
+    .experience-editorial__section-subheading {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.72px;
+    }
+
+    .experience-editorial__section-heading {
+      letter-spacing: -0.84px;
+    }
+
+    .experience-editorial__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .experience-editorial__image-wrapper {
+      aspect-ratio: unset;
+    }
+
+    .experience-editorial__content {
+      justify-content: center;
+    }
+
+    .experience-editorial__content-inner {
+      max-width: 492px;
+      gap: 32px;
+      padding: 0;
+    }
+
+    .experience-editorial__content-subheading {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.72px;
+    }
+
+    .experience-editorial__content-heading {
+      letter-spacing: -0.36px;
+    }
+
+    .experience-editorial__content-text {
+      font-size: 18px;
+      line-height: 1.39;
+      letter-spacing: 0;
+    }
+
+    .experience-editorial__cta .button {
+      font-size: 16px;
+      line-height: 23px;
+      padding: 10px 34px 13px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Experience editorial",
+  "class": "section-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "section_subheading",
+      "label": "Subheading",
+      "default": "TITLE GOES HERE"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Experience Best-in-Class Filtration"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "content_subheading",
+      "label": "Subheading",
+      "default": "40oz Stainless Filtered Water Bottle"
+    },
+    {
+      "type": "text",
+      "id": "content_heading",
+      "label": "Heading",
+      "default": "Our biggest (and best bottle) just dropped"
+    },
+    {
+      "type": "textarea",
+      "id": "content_text",
+      "label": "Description",
+      "default": "Go big with the bottle designed for more freedom and fewer refills. The comfort-grip handle makes it easy to grab and go, it fits standard cup holders like a glove, and it cleans every drop."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop 42oz Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_start",
+      "label": "Gradient start",
+      "default": "#C1EFFA"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_end",
+      "label": "Gradient end",
+      "default": "#8DCEF9"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "label": "Gradient opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experience editorial",
+      "category": "t:categories.merchandising"
+    }
+  ]
+}
+{% endschema %}

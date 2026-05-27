@@ -147,6 +147,25 @@
         "padding-block-end": 65
       }
     },
+    "experience_editorial_aR4kT7": {
+      "type": "experience-editorial",
+      "settings": {
+        "section_subheading": "TITLE GOES HERE",
+        "section_heading": "Experience Best-in-Class Filtration",
+        "image": "shopify://shop_images/image-7-mobile-18492650.png",
+        "content_subheading": "40oz Stainless Filtered Water Bottle",
+        "content_heading": "Our biggest (and best bottle) just dropped",
+        "content_text": "Go big with the bottle designed for more freedom and fewer refills. The comfort-grip handle makes it easy to grab and go, it fits standard cup holders like a glove, and it cleans every drop.",
+        "button_text": "Shop 42oz Now",
+        "gradient_color_start": "#C1EFFA",
+        "gradient_color_end": "#8DCEF9",
+        "gradient_opacity": 50,
+        "color_scheme": "scheme-1",
+        "section_width": "full-width",
+        "padding-block-start": 48,
+        "padding-block-end": 0
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -345,6 +364,7 @@
   "order": [
     "hero_jVaWmY",
     "shop_by_category_kX7mR2",
+    "experience_editorial_aR4kT7",
     "product_list_fa6P9H"
   ]
 }
