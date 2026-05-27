@@ -141,6 +141,7 @@
         "category_6"
       ],
       "settings": {
+        "heading": "",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "padding-block-start": 65,
