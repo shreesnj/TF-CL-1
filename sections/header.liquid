@@ -50,6 +50,10 @@
     content_for 'block', type: '_header-logo', id: 'header-logo'
   endcapture
 
+  assign utility_icons_src = 'icons.svg' | asset_url
+  assign utility_icons_html = '<img src="' | append: utility_icons_src | append: '" alt="" class="header__utility-icons mobile:hidden" width="125" height="22" aria-hidden="true">'
+  assign logo = utility_icons_html | append: logo
+
   # theme-check-disable UniqueStaticBlockId
   capture menu
     content_for 'block', type: '_header-menu', id: 'header-menu'
@@ -1110,6 +1114,56 @@
   .dropdown-localization:not(dropdown-localization-component) .language-selector {
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
+  }
+
+  /* ================================
+   * Split-nav desktop layout
+   * Splits 6 menu items (3 left | logo | 3 right)
+   * ================================ */
+  @media screen and (min-width: 750px) {
+    /* Expand center column to fill available space for the split-nav */
+    #header-component[data-menu-style='menu'] .header__row--top .header__columns:has(.header__column--center header-menu) {
+      --header-center: 1fr;
+      --header-left: auto;
+      --header-right: auto;
+    }
+
+    /* Logo absolutely centered at viewport center, layered above the menu */
+    #header-component[data-menu-style='menu'] .header__row--top .header-logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    /* Menu expands to fill the full center column width */
+    #header-component[data-menu-style='menu'] .header__column--center header-menu {
+      width: 100%;
+    }
+
+    /* Split menu items: first 3 push left, last 3 push right via auto margins */
+    #header-component[data-menu-style='menu'] .menu-list__list-item:nth-child(3) {
+      margin-inline-end: auto;
+    }
+
+    #header-component[data-menu-style='menu'] .menu-list__list-item:nth-child(4) {
+      margin-inline-start: auto;
+    }
+
+    /* Utility icons (search, account, cart) positioned to the left of the centered logo */
+    #header-component[data-menu-style='menu'] .header__utility-icons {
+      position: absolute;
+      z-index: 1;
+      right: calc(50% + 130px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Override nav link font-size to 17px to match Figma 17px/24px spec */
+    #header-component[data-menu-style='menu'] .menu-list__link {
+      font-size: 1.0625rem;
+    }
   }
 {% endstylesheet %}
 
