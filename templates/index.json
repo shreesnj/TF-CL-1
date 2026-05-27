@@ -537,6 +537,112 @@
         "padding-block-end": 48
       }
     },
+    "marquee_trust_bar": {
+      "type": "marquee",
+      "blocks": {
+        "icon_1": {
+          "type": "icon",
+          "settings": {
+            "icon": "check_box",
+            "width": 20
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>MADE IN THE USA WITH MEDICAL-GRADE MATERIALS</p>",
+            "width": "fit-content",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon": "clipboard",
+            "width": 20
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LAB TESTED & VERIFIED BY EPA/NSF STANDARDS</p>",
+            "width": "fit-content",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "icon_3": {
+          "type": "icon",
+          "settings": {
+            "icon": "star",
+            "width": 20
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LIMITED LIFETIME WARRANTY</p>",
+            "width": "fit-content",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "text_1",
+        "icon_2",
+        "text_2",
+        "icon_3",
+        "text_3"
+      ],
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-5",
+        "padding-block-start": 38,
+        "padding-block-end": 38,
+        "gap_between_elements": 48,
+        "show_gradient_bar": true,
+        "gradient_bar_height": 4,
+        "gradient_color_start": "#2179C2",
+        "gradient_color_mid": "#8DCEF9",
+        "gradient_color_end": "#F1DCC1"
+      }
+    },
     "faq_section": {
       "type": "section",
       "blocks": {
@@ -725,6 +831,7 @@
   },
   "order": [
     "hero_jVaWmY",
+    "marquee_trust_bar",
     "shop_by_category_kX7mR2",
     "shop_by_bestsellers_Bx4mK1",
     "shop_by_system_Qx8mN3",

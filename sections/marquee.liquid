@@ -35,6 +35,18 @@
   </div>
 </marquee-component>
 
+{% if section.settings.show_gradient_bar %}
+  {% style %}
+    #shopify-section-{{ section.id }} .marquee__gradient-bar {
+      --gradient-start: {{ section.settings.gradient_color_start }};
+      --gradient-mid: {{ section.settings.gradient_color_mid }};
+      --gradient-end: {{ section.settings.gradient_color_end }};
+      --gradient-height: {{ section.settings.gradient_bar_height }}px;
+    }
+  {% endstyle %}
+  <div class="marquee__gradient-bar"></div>
+{% endif %}
+
 {% stylesheet %}
   marquee-component {
     display: block;
@@ -85,6 +97,13 @@
     to {
       transform: translate3d(calc(-50% - (var(--marquee-gap) / 2)), 0, 0);
     }
+  }
+
+  .marquee__gradient-bar {
+    width: 100%;
+    height: var(--gradient-height, 4px);
+    background: linear-gradient(270deg, var(--gradient-start) 0%, var(--gradient-mid) 51%, var(--gradient-end) 100%);
+    pointer-events: none;
   }
 {% endstylesheet %}
 
@@ -164,6 +183,48 @@
       "step": 1,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Gradient bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gradient_bar",
+      "label": "Show gradient bar",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "gradient_bar_height",
+      "label": "Bar height",
+      "min": 1,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "default": 4,
+      "visible_if": "{{ section.settings.show_gradient_bar }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_start",
+      "label": "Gradient start",
+      "default": "#2179C2",
+      "visible_if": "{{ section.settings.show_gradient_bar }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_mid",
+      "label": "Gradient middle",
+      "default": "#8DCEF9",
+      "visible_if": "{{ section.settings.show_gradient_bar }}"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_end",
+      "label": "Gradient end",
+      "default": "#F1DCC1",
+      "visible_if": "{{ section.settings.show_gradient_bar }}"
     }
   ],
   "presets": [
