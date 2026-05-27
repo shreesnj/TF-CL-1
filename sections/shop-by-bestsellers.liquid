@@ -1,0 +1,625 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-testid="shop-by-bestsellers-{{ section.id }}"
+>
+  <div class="shop-by-bestsellers" id="shop-by-bestsellers-{{ section.id }}">
+    <div class="shop-by-bestsellers__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="shop-by-bestsellers__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      <div class="shop-by-bestsellers__arrows">
+        <button
+          class="shop-by-bestsellers__arrow shop-by-bestsellers__arrow--prev"
+          type="button"
+          aria-label="Previous slide"
+          disabled
+        >
+          <img src="{{ 'carousel-arrows-3.svg' | asset_url }}" alt="" width="50" height="50">
+        </button>
+        <button
+          class="shop-by-bestsellers__arrow shop-by-bestsellers__arrow--next"
+          type="button"
+          aria-label="Next slide"
+        >
+          <img src="{{ 'carousel-arrows-4.svg' | asset_url }}" alt="" width="50" height="50">
+        </button>
+      </div>
+      {% if section.settings.mobile_link_text != blank %}
+        <a
+          class="shop-by-bestsellers__mobile-link"
+          href="{{ section.settings.button_url | default: section.settings.collection.url | default: '#' }}"
+        >
+          {{ section.settings.mobile_link_text | escape }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% assign bs_collection = section.settings.collection %}
+    {% if bs_collection != blank and bs_collection.products.size > 0 %}
+      <div class="shop-by-bestsellers__grid">
+        {% for product in bs_collection.products limit: section.settings.max_products %}
+          <a class="shop-by-bestsellers__card" href="{{ product.url }}">
+            <div class="shop-by-bestsellers__card-image">
+              {% if product.featured_image != blank %}
+                {%- assign sizes_val = '(min-width: 750px) 25vw, 82.7vw' -%}
+                {{
+                  product.featured_image
+                  | image_url: width: product.featured_image.width
+                  | image_tag:
+                    sizes: sizes_val,
+                    widths: '292,387,494,584,774',
+                    loading: 'lazy',
+                    class: 'shop-by-bestsellers__image',
+                    alt: product.featured_image.alt | default: product.title
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'shop-by-bestsellers__placeholder' }}
+              {% endif %}
+            </div>
+            <div class="shop-by-bestsellers__card-content">
+              {% if section.settings.show_reviews %}
+                {% assign review_count = product.metafields.reviews.rating_count.value %}
+                {% if review_count != blank and review_count > 0 %}
+                  <div class="shop-by-bestsellers__reviews">
+                    <svg class="shop-by-bestsellers__stars" width="68" height="13" viewBox="0 0 68 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M6 0.75L7.76 4.65L12 5.15L8.5 8.1L9.42 12.25L6 10.15L2.58 12.25L3.5 8.1L0 5.15L4.24 4.65L6 0.75Z" fill="currentColor"/>
+                      <path d="M20 0.75L21.76 4.65L26 5.15L22.5 8.1L23.42 12.25L20 10.15L16.58 12.25L17.5 8.1L14 5.15L18.24 4.65L20 0.75Z" fill="currentColor"/>
+                      <path d="M34 0.75L35.76 4.65L40 5.15L36.5 8.1L37.42 12.25L34 10.15L30.58 12.25L31.5 8.1L28 5.15L32.24 4.65L34 0.75Z" fill="currentColor"/>
+                      <path d="M48 0.75L49.76 4.65L54 5.15L50.5 8.1L51.42 12.25L48 10.15L44.58 12.25L45.5 8.1L42 5.15L46.24 4.65L48 0.75Z" fill="currentColor"/>
+                      <path d="M62 0.75L63.76 4.65L68 5.15L64.5 8.1L65.42 12.25L62 10.15L58.58 12.25L59.5 8.1L56 5.15L60.24 4.65L62 0.75Z" fill="currentColor"/>
+                    </svg>
+                    <span class="shop-by-bestsellers__review-count">{{ review_count }} Reviews</span>
+                  </div>
+                {% endif %}
+              {% endif %}
+              <div class="shop-by-bestsellers__title-group">
+                <span class="shop-by-bestsellers__product-title">{{ product.title | escape }}</span>
+                {% assign first_variant = product.variants.first %}
+                {% if first_variant.title != 'Default Title' %}
+                  <span class="shop-by-bestsellers__variant-title">{{ first_variant.title | escape }}</span>
+                {% endif %}
+              </div>
+              <span class="shop-by-bestsellers__price">
+                {% if product.price_varies %}From {% endif %}{{ product.price | money }}
+              </span>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
+      <div class="shop-by-bestsellers__progress">
+        <div class="shop-by-bestsellers__progress-track">
+          <div class="shop-by-bestsellers__progress-fill"></div>
+        </div>
+        <span class="shop-by-bestsellers__counter">
+          <span class="shop-by-bestsellers__counter-current">1</span>/<span class="shop-by-bestsellers__counter-total">1</span>
+        </span>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_text != blank %}
+      <div class="shop-by-bestsellers__cta">
+        <a
+          class="shop-by-bestsellers__cta-button"
+          href="{{ section.settings.button_url | default: section.settings.collection.url | default: '#' }}"
+        >
+          {{ section.settings.button_text | escape }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    var sectionId = '{{ section.id }}';
+    var root = document.getElementById('shop-by-bestsellers-' + sectionId);
+    if (!root) return;
+
+    var grid = root.querySelector('.shop-by-bestsellers__grid');
+    var prevBtn = root.querySelector('.shop-by-bestsellers__arrow--prev');
+    var nextBtn = root.querySelector('.shop-by-bestsellers__arrow--next');
+    var counterCurrent = root.querySelector('.shop-by-bestsellers__counter-current');
+    var counterTotal = root.querySelector('.shop-by-bestsellers__counter-total');
+    var progressFill = root.querySelector('.shop-by-bestsellers__progress-fill');
+    var cards = grid ? grid.querySelectorAll('.shop-by-bestsellers__card') : [];
+    var totalItems = cards.length;
+
+    if (!grid || totalItems === 0) return;
+
+    function getItemWidth() {
+      var firstItem = cards[0];
+      if (!firstItem) return 0;
+      return firstItem.offsetWidth;
+    }
+
+    function getVisibleCount() {
+      var itemWidth = getItemWidth();
+      if (itemWidth === 0) return 1;
+      return Math.max(1, Math.round(grid.clientWidth / itemWidth));
+    }
+
+    function getScrollAmount() {
+      return grid.clientWidth;
+    }
+
+    function updateState() {
+      var scrollLeft = grid.scrollLeft;
+      var maxScroll = grid.scrollWidth - grid.clientWidth;
+      var visibleCount = getVisibleCount();
+      var totalPages = Math.max(1, Math.ceil(totalItems / visibleCount));
+      var currentPage;
+
+      if (maxScroll <= 0) {
+        currentPage = 1;
+      } else {
+        currentPage = Math.round((scrollLeft / maxScroll) * (totalPages - 1)) + 1;
+      }
+
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      if (prevBtn) {
+        prevBtn.disabled = scrollLeft <= 2;
+      }
+
+      if (nextBtn) {
+        nextBtn.disabled = scrollLeft >= maxScroll - 2;
+      }
+
+      if (counterCurrent) {
+        counterCurrent.textContent = currentPage;
+      }
+
+      if (counterTotal) {
+        counterTotal.textContent = totalPages;
+      }
+
+      if (progressFill) {
+        var fillPercent = (currentPage / totalPages) * 100;
+        progressFill.style.width = fillPercent + '%';
+      }
+    }
+
+    var ticking = false;
+    grid.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          updateState();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        grid.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+      });
+    }
+
+    updateState();
+  })();
+</script>
+
+{% stylesheet %}
+.shop-by-bestsellers {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.shop-by-bestsellers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-by-bestsellers__heading {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.52px;
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.shop-by-bestsellers__arrows {
+  display: none;
+}
+
+.shop-by-bestsellers__arrow {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.shop-by-bestsellers__arrow[disabled] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.shop-by-bestsellers__mobile-link {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+  color: var(--color-foreground);
+}
+
+.shop-by-bestsellers__grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  gap: 0;
+}
+
+.shop-by-bestsellers__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.shop-by-bestsellers__card {
+  flex: 0 0 82.7%;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.shop-by-bestsellers__card + .shop-by-bestsellers__card {
+  margin-inline-start: -1px;
+}
+
+.shop-by-bestsellers__card:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.shop-by-bestsellers__card:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.shop-by-bestsellers__card:first-child:last-child {
+  border-radius: 5px;
+}
+
+.shop-by-bestsellers__card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.shop-by-bestsellers__image,
+.shop-by-bestsellers__placeholder {
+  width: 71%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.shop-by-bestsellers__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+}
+
+.shop-by-bestsellers__reviews {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shop-by-bestsellers__stars {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.shop-by-bestsellers__review-count {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.1px;
+  color: var(--color-foreground);
+}
+
+.shop-by-bestsellers__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.shop-by-bestsellers__product-title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-foreground);
+}
+
+.shop-by-bestsellers__variant-title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.1px;
+  color: #797D86;
+}
+
+.shop-by-bestsellers__price {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 0.1px;
+  color: var(--color-foreground);
+}
+
+.shop-by-bestsellers__progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.shop-by-bestsellers__progress-track {
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.shop-by-bestsellers__progress-fill {
+  height: 100%;
+  background-color: var(--color-foreground);
+  border-radius: 1px;
+  width: 25%;
+  transition: width 0.3s ease;
+}
+
+.shop-by-bestsellers__counter {
+  font-family: var(--font-accent--family);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-foreground);
+  white-space: nowrap;
+}
+
+.shop-by-bestsellers__cta {
+  text-align: center;
+}
+
+.shop-by-bestsellers__cta-button {
+  display: inline-block;
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-primary-button-background);
+  color: var(--color-primary-button-text);
+  border: 1px solid var(--color-primary-button-border);
+  border-radius: 57px;
+  padding: 10px 34px 13px 34px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.shop-by-bestsellers__cta-button:hover {
+  background-color: var(--color-primary-button-hover-background);
+  color: var(--color-primary-button-hover-text);
+  border-color: var(--color-primary-button-hover-border);
+}
+
+@media screen and (min-width: 750px) {
+  .shop-by-bestsellers {
+    gap: 32px;
+  }
+
+  .shop-by-bestsellers__heading {
+    font-size: 42px;
+    line-height: 55px;
+    letter-spacing: -0.84px;
+  }
+
+  .shop-by-bestsellers__arrows {
+    display: flex;
+    gap: 19px;
+    align-items: center;
+  }
+
+  .shop-by-bestsellers__mobile-link {
+    display: none;
+  }
+
+  .shop-by-bestsellers__card {
+    flex: 0 0 25%;
+  }
+
+  .shop-by-bestsellers__card-image {
+    padding: 26px;
+  }
+
+  .shop-by-bestsellers__card-content {
+    padding: 24px;
+  }
+
+  .shop-by-bestsellers__reviews {
+    gap: 6px;
+  }
+
+  .shop-by-bestsellers__review-count {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0;
+  }
+
+  .shop-by-bestsellers__product-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .shop-by-bestsellers__variant-title {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0;
+  }
+
+  .shop-by-bestsellers__price {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0;
+  }
+
+  .shop-by-bestsellers__counter {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.56px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by Bestsellers",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop Best Sellers"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Max products",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show reviews",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop All Products"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "mobile_link_text",
+      "label": "Mobile link text",
+      "default": "Shop All"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Bestsellers",
+      "category": "t:categories.collections"
+    }
+  ]
+}
+{% endschema %}

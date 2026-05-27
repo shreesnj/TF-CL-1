@@ -148,6 +148,21 @@
         "padding-block-end": 65
       }
     },
+    "shop_by_bestsellers_Bx4mK1": {
+      "type": "shop-by-bestsellers",
+      "settings": {
+        "heading": "Shop Best Sellers",
+        "collection": "all",
+        "max_products": 16,
+        "show_reviews": true,
+        "button_text": "Shop All Products",
+        "mobile_link_text": "Shop All",
+        "section_width": "page-width",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "experience_editorial_aR4kT7": {
       "type": "experience-editorial",
       "settings": {
@@ -468,6 +483,7 @@
   "order": [
     "hero_jVaWmY",
     "shop_by_category_kX7mR2",
+    "shop_by_bestsellers_Bx4mK1",
     "shop_by_system_Qx8mN3",
     "experience_editorial_aR4kT7",
     "centered_headline_cWm1",
