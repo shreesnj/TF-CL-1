@@ -166,6 +166,17 @@
         "padding-block-end": 0
       }
     },
+    "centered_headline_cWm1": {
+      "type": "centered-headline",
+      "settings": {
+        "subtitle": "CLEAN WATER, CLEAR MIND",
+        "heading": "Dedicated To Your Health & Safety",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "filtration_technology_fTk8J2": {
       "type": "filtration-technology",
       "blocks": {
@@ -411,6 +422,7 @@
     "hero_jVaWmY",
     "shop_by_category_kX7mR2",
     "experience_editorial_aR4kT7",
+    "centered_headline_cWm1",
     "filtration_technology_fTk8J2",
     "product_list_fa6P9H"
   ]
