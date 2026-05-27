@@ -4,43 +4,198 @@
   style="{% render 'spacing-style', settings: section.settings %}"
   data-testid="shop-by-category-{{ section.id }}"
 >
-  <div class="shop-by-category__grid">
-    {% for block in section.blocks %}
-      <a
-        class="shop-by-category__item"
-        {% if block.settings.link != blank %}
-          href="{{ block.settings.link }}"
-        {% endif %}
-        {{ block.shopify_attributes }}
-      >
-        <div class="shop-by-category__image-wrapper">
-          {% if block.settings.image != blank %}
-            {{
-              block.settings.image
-              | image_url: width: block.settings.image.width
-              | image_tag:
-                sizes: '(min-width: 750px) 230px, 132px',
-                widths: '96,132,168,230,264,460',
-                loading: 'lazy',
-                class: 'shop-by-category__image',
-                alt: block.settings.image.alt | default: block.settings.title
-            }}
-          {% else %}
-            {{ 'collection-1' | placeholder_svg_tag: 'shop-by-category__placeholder' }}
+  <div class="shop-by-category" id="shop-by-category-{{ section.id }}">
+    <div class="shop-by-category__header">
+      <h2 class="shop-by-category__heading">{{ section.settings.heading }}</h2>
+      <div class="shop-by-category__arrows">
+        <button
+          class="shop-by-category__arrow shop-by-category__arrow--prev"
+          aria-label="Previous"
+          disabled
+        >
+          <img src="{{ 'carousel-arrows-3.svg' | asset_url }}" alt="" width="50" height="50" loading="lazy">
+        </button>
+        <button
+          class="shop-by-category__arrow shop-by-category__arrow--next"
+          aria-label="Next"
+        >
+          <img src="{{ 'carousel-arrows-4.svg' | asset_url }}" alt="" width="50" height="50" loading="lazy">
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-by-category__grid" ref="carousel">
+      {% for block in section.blocks %}
+        <a
+          class="shop-by-category__item"
+          {% if block.settings.link != blank %}
+            href="{{ block.settings.link }}"
           {% endif %}
-        </div>
-        <span class="shop-by-category__title">{{ block.settings.title | escape }}</span>
-      </a>
-    {% endfor %}
+          {{ block.shopify_attributes }}
+        >
+          <div class="shop-by-category__image-wrapper">
+            {% if block.settings.image != blank %}
+              {%- assign sizes_val = '(min-width: 750px) calc((var(--page-width) - 96px) / 4), calc((100vw - 48px) / 2)' -%}
+              {{
+                block.settings.image
+                | image_url: width: block.settings.image.width
+                | image_tag:
+                  sizes: sizes_val,
+                  widths: '200,292,400,494,584,800,988',
+                  loading: 'lazy',
+                  class: 'shop-by-category__image',
+                  alt: block.settings.image.alt | default: block.settings.title
+              }}
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'shop-by-category__placeholder' }}
+            {% endif %}
+          </div>
+          <span class="shop-by-category__title">{{ block.settings.title | escape }}</span>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="shop-by-category__counter">
+      <span class="shop-by-category__counter-text" ref="counter">1/{{ section.blocks.size }}</span>
+    </div>
   </div>
 </div>
 
+<script>
+  (function() {
+    var section = document.getElementById('shop-by-category-{{ section.id }}');
+    if (!section) return;
+
+    var carousel = section.querySelector('.shop-by-category__grid');
+    var prevBtn = section.querySelector('.shop-by-category__arrow--prev');
+    var nextBtn = section.querySelector('.shop-by-category__arrow--next');
+    var counterEl = section.querySelector('.shop-by-category__counter-text');
+    var items = carousel.querySelectorAll('.shop-by-category__item');
+
+    if (!carousel || !items.length) return;
+
+    function getItemMetrics() {
+      var firstItem = items[0];
+      var itemWidth = firstItem.offsetWidth;
+      var style = window.getComputedStyle(carousel);
+      var gap = parseFloat(style.columnGap) || parseFloat(style.gap) || 16;
+      return { itemWidth: itemWidth, gap: gap };
+    }
+
+    function getVisibleCount() {
+      var metrics = getItemMetrics();
+      var containerWidth = carousel.offsetWidth;
+      var count = Math.round((containerWidth + metrics.gap) / (metrics.itemWidth + metrics.gap));
+      return Math.max(1, Math.min(count, items.length));
+    }
+
+    function updateState() {
+      var metrics = getItemMetrics();
+      var scrollLeft = carousel.scrollLeft;
+      var maxScroll = carousel.scrollWidth - carousel.offsetWidth;
+      var visibleCount = getVisibleCount();
+      var totalPositions = Math.max(1, items.length - visibleCount + 1);
+      var currentIndex = Math.min(
+        totalPositions,
+        Math.round(scrollLeft / (metrics.itemWidth + metrics.gap)) + 1
+      );
+
+      if (currentIndex < 1) currentIndex = 1;
+
+      if (counterEl) {
+        counterEl.textContent = currentIndex + '/' + totalPositions;
+      }
+
+      if (prevBtn) {
+        prevBtn.disabled = scrollLeft <= 2;
+      }
+
+      if (nextBtn) {
+        nextBtn.disabled = scrollLeft >= maxScroll - 2;
+      }
+    }
+
+    var ticking = false;
+    carousel.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          updateState();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        var metrics = getItemMetrics();
+        carousel.scrollBy({ left: -(metrics.itemWidth + metrics.gap), behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        var metrics = getItemMetrics();
+        carousel.scrollBy({ left: metrics.itemWidth + metrics.gap, behavior: 'smooth' });
+      });
+    }
+
+    updateState();
+
+    window.addEventListener('resize', function() {
+      updateState();
+    });
+  })();
+</script>
+
 {% stylesheet %}
+.shop-by-category {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.shop-by-category__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-by-category__heading {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.52px;
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.shop-by-category__arrows {
+  display: none;
+}
+
+.shop-by-category__arrow {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.shop-by-category__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 .shop-by-category__grid {
   display: flex;
-  gap: 16px;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  gap: 16px;
 }
 
 .shop-by-category__grid::-webkit-scrollbar {
@@ -50,28 +205,25 @@
 .shop-by-category__item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-  width: 132px;
+  gap: 16px;
+  flex: 0 0 calc((100% - 16px) / 2);
+  scroll-snap-align: start;
   text-decoration: none;
   color: inherit;
 }
 
 .shop-by-category__image-wrapper {
-  width: 132px;
-  height: 132px;
-  border-radius: 5px;
-  background-color: #F2F7FB;
+  aspect-ratio: 1 / 1;
+  width: 100%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #D3D8DD;
+  border-radius: 0;
 }
 
 .shop-by-category__image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .shop-by-category__placeholder {
@@ -80,37 +232,66 @@
 }
 
 .shop-by-category__title {
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.14px;
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 29px;
+  letter-spacing: -0.22px;
+  color: var(--color-foreground);
+}
+
+.shop-by-category__counter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shop-by-category__counter-text {
+  font-family: var(--font-subheading--family);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
   color: var(--color-foreground);
 }
 
 @media screen and (min-width: 750px) {
-  .shop-by-category__grid {
-    overflow: visible;
-    justify-content: space-between;
+  .shop-by-category {
+    gap: 32px;
   }
 
-  .shop-by-category__item {
-    flex-shrink: 1;
-    flex-grow: 0;
-    width: auto;
-    gap: 12px;
+  .shop-by-category__heading {
+    font-size: 42px;
+    line-height: 55px;
+    letter-spacing: -0.84px;
+  }
+
+  .shop-by-category__arrows {
+    display: flex;
+    gap: 19px;
     align-items: center;
   }
 
-  .shop-by-category__image-wrapper {
-    width: 230px;
-    height: 230px;
-    border-radius: 0;
+  .shop-by-category__grid {
+    gap: 32px;
+  }
+
+  .shop-by-category__item {
+    flex: 0 0 calc((100% - 96px) / 4);
+    gap: 32px;
   }
 
   .shop-by-category__title {
-    font-size: 18px;
-    line-height: 25px;
-    letter-spacing: 0;
-    text-align: center;
+    font-size: 36px;
+    line-height: 47px;
+    letter-spacing: -0.36px;
+    text-align: left;
+  }
+
+  .shop-by-category__counter-text {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.56px;
   }
 }
 {% endstylesheet %}
@@ -122,6 +303,16 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by System"
+    },
     {
       "type": "header",
       "content": "t:content.layout"
