@@ -515,7 +515,7 @@
     >
       {% liquid
         if section.settings.toggle_overlay
-          render 'overlay', settings: section.settings
+          render 'overlay', settings: section.settings, mobile_color: section.settings.overlay_color_mobile
         endif
       %}
       {{ media }}
@@ -1157,7 +1157,15 @@
       "id": "overlay_color",
       "label": "t:settings.overlay_color",
       "alpha": true,
-      "default": "#00000026",
+      "default": "#0000004D",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color_mobile",
+      "label": "Mobile overlay color",
+      "alpha": true,
+      "default": "#0000007A",
       "visible_if": "{{ section.settings.toggle_overlay }}"
     },
     {
@@ -1277,7 +1285,8 @@
         "padding-block-start": 40,
         "padding-block-end": 40,
         "toggle_overlay": true,
-        "overlay_style": "gradient"
+        "overlay_style": "gradient",
+        "gradient_direction": "to bottom"
       }
     },
     {
