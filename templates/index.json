@@ -224,6 +224,52 @@
         "padding-block-end": 0
       }
     },
+    "shop_by_system_Qx8mN3": {
+      "type": "shop-by-system",
+      "blocks": {
+        "category_pitcher": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-46-pm-1-mobile-18492758.png",
+            "title": "Pitcher"
+          }
+        },
+        "category_bottles": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-40-pm-1-mobile-18492762.png",
+            "title": "Bottles"
+          }
+        },
+        "category_fridge_filter": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-34-pm-1-desktop-18492479.png",
+            "title": "Fridge Filter"
+          }
+        },
+        "category_under_sink": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2026-02-18-at-2-02-26-pm-1-desktop-18492483.png",
+            "title": "Under Sink System"
+          }
+        }
+      },
+      "block_order": [
+        "category_pitcher",
+        "category_bottles",
+        "category_fridge_filter",
+        "category_under_sink"
+      ],
+      "settings": {
+        "heading": "Shop by System",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -422,6 +468,7 @@
   "order": [
     "hero_jVaWmY",
     "shop_by_category_kX7mR2",
+    "shop_by_system_Qx8mN3",
     "experience_editorial_aR4kT7",
     "centered_headline_cWm1",
     "filtration_technology_fTk8J2",
