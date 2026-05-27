@@ -166,6 +166,52 @@
         "padding-block-end": 0
       }
     },
+    "filtration_technology_fTk8J2": {
+      "type": "filtration-technology",
+      "blocks": {
+        "callout_1": {
+          "type": "callout",
+          "settings": {
+            "title": "Contaminant Magnet",
+            "description": "Our filter targets more contaminants than the 3 leading brand name water pitchers combined."
+          }
+        },
+        "callout_2": {
+          "type": "callout",
+          "settings": {
+            "title": "Targets 365+ Contaminants",
+            "description": "Our filter targets more contaminants than the 3 leading brand name water pitchers combined."
+          }
+        },
+        "callout_3": {
+          "type": "callout",
+          "settings": {
+            "title": "Contaminant Magnet",
+            "description": "Our filter targets more contaminants than the 3 leading brand name water pitchers combined."
+          }
+        }
+      },
+      "block_order": [
+        "callout_1",
+        "callout_2",
+        "callout_3"
+      ],
+      "settings": {
+        "subtitle": "AFFINITY® FILTRATION TECHNOLOGY",
+        "heading": "Advanced filters that set a new standard",
+        "description": "Our breakthrough filtration technology targets up to 73x more dangerous chemicals, contaminants, & toxins than typical carbon filters.",
+        "primary_button_text": "Our Technology",
+        "secondary_button_text": "Lab Test Results",
+        "video_label": "See it in action",
+        "filter_image": "shopify://shop_images/exploding-filter2-1200x-1-2-mobile-18492617.png",
+        "background_image": "shopify://shop_images/vid-bg-mobile-18492609.png",
+        "video_thumbnail": "shopify://shop_images/larq-pitcher-step-1-2-mobile-18492611.png",
+        "color_scheme": "scheme-5",
+        "section_width": "full-width",
+        "padding-block-start": 72,
+        "padding-block-end": 0
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -365,6 +411,7 @@
     "hero_jVaWmY",
     "shop_by_category_kX7mR2",
     "experience_editorial_aR4kT7",
+    "filtration_technology_fTk8J2",
     "product_list_fa6P9H"
   ]
 }
