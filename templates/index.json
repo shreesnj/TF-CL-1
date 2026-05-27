@@ -521,6 +521,19 @@
         "padding-block-start": 60,
         "padding-block-end": 60
       }
+    },
+    "from_the_blog": {
+      "type": "from-the-blog",
+      "settings": {
+        "heading": "From the Blog",
+        "button_text": "View All",
+        "mobile_button_text": "View All Articles",
+        "post_count": 3,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
@@ -532,6 +545,7 @@
     "centered_headline_cWm1",
     "filtration_technology_fTk8J2",
     "product_list_fa6P9H",
-    "trust_reviews"
+    "trust_reviews",
+    "from_the_blog"
   ]
 }
