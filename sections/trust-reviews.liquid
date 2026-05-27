@@ -1,0 +1,749 @@
+{% liquid
+  assign color_scheme = section.settings.color_scheme
+  assign section_width = section.settings.section_width
+  assign block_count = section.blocks.size
+  assign show_carousel = false
+  assign show_sides = false
+  assign show_arrows = false
+
+  if block_count > 0
+    assign show_carousel = true
+  endif
+
+  if block_count >= 2
+    assign show_sides = true
+    assign show_arrows = true
+    assign active_index = 1
+  else
+    assign active_index = 0
+  endif
+
+  if show_carousel
+    assign prev_index = active_index | minus: 1
+    if prev_index < 0
+      assign prev_index = block_count | minus: 1
+    endif
+    assign next_index = active_index | plus: 1
+    assign next_index = next_index | modulo: block_count
+
+    assign active_block = section.blocks[active_index]
+    assign prev_block = section.blocks[prev_index]
+    assign next_block = section.blocks[next_index]
+  endif
+
+  assign heading_text = section.settings.heading
+  assign highlight_text = section.settings.heading_highlight
+  assign heading_escaped = heading_text | escape
+  assign highlight_escaped = highlight_text | escape
+
+  if highlight_text != blank and heading_text contains highlight_text
+    assign highlight_html = '<span class="trust-reviews__highlight">' | append: highlight_escaped | append: '</span>'
+    assign heading_rendered = heading_escaped | replace: highlight_escaped, highlight_html
+  else
+    assign heading_rendered = heading_escaped
+  endif
+%}
+
+<div class="section-background color-{{ color_scheme }}"></div>
+<div
+  class="section section--{{ section_width }} trust-reviews color-{{ color_scheme }} spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-testid="trust-reviews-{{ section.id }}"
+>
+  <div class="trust-reviews__gradient" aria-hidden="true"></div>
+
+  <div class="trust-reviews__inner" id="trust-reviews-{{ section.id }}">
+    {%- comment -%} Headline {%- endcomment -%}
+    <div class="trust-reviews__headline">
+      {% if section.settings.subtitle != blank %}
+        <p class="trust-reviews__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {% endif %}
+
+      {% if heading_text != blank %}
+        <h2 class="trust-reviews__heading">{{ heading_rendered }}</h2>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a
+          {% if section.settings.button_url != blank %}href="{{ section.settings.button_url }}"{% endif %}
+          class="button trust-reviews__btn trust-reviews__btn--mobile"
+        >
+          {{- section.settings.button_text | escape -}}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if show_carousel %}
+      {%- comment -%} Carousel {%- endcomment -%}
+      <div class="trust-reviews__carousel">
+        {% if show_sides %}
+          <div class="trust-reviews__slide trust-reviews__slide--prev" data-slot="prev">
+            <div class="trust-reviews__image-wrapper trust-reviews__image-wrapper--side">
+              {% if prev_block.settings.image != blank %}
+                <img
+                  class="trust-reviews__image"
+                  src="{{ prev_block.settings.image | image_url: width: 738 }}"
+                  alt="{{ prev_block.settings.image.alt | default: prev_block.settings.reviewer_name | escape }}"
+                  width="369"
+                  height="369"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+            <span class="trust-reviews__slide-name">{{ prev_block.settings.reviewer_name | escape }}</span>
+          </div>
+        {% endif %}
+
+        {% if show_arrows %}
+          <button
+            class="trust-reviews__arrow trust-reviews__arrow--prev"
+            type="button"
+            aria-label="Previous review"
+          >
+            <img src="{{ 'carousel-arrows.svg' | asset_url }}" alt="" width="50" height="50">
+          </button>
+        {% endif %}
+
+        <div class="trust-reviews__slide trust-reviews__slide--active" data-slot="active">
+          <div class="trust-reviews__image-wrapper trust-reviews__image-wrapper--center">
+            {% if active_block.settings.image != blank %}
+              <img
+                class="trust-reviews__image"
+                src="{{ active_block.settings.image | image_url: width: 1000 }}"
+                alt="{{ active_block.settings.image.alt | default: active_block.settings.reviewer_name | escape }}"
+                width="500"
+                height="500"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        </div>
+
+        {% if show_arrows %}
+          <button
+            class="trust-reviews__arrow trust-reviews__arrow--next"
+            type="button"
+            aria-label="Next review"
+          >
+            <img src="{{ 'carousel-arrows-2.svg' | asset_url }}" alt="" width="50" height="50">
+          </button>
+        {% endif %}
+
+        {% if show_sides %}
+          <div class="trust-reviews__slide trust-reviews__slide--next" data-slot="next">
+            <div class="trust-reviews__image-wrapper trust-reviews__image-wrapper--side">
+              {% if next_block.settings.image != blank %}
+                <img
+                  class="trust-reviews__image"
+                  src="{{ next_block.settings.image | image_url: width: 738 }}"
+                  alt="{{ next_block.settings.image.alt | default: next_block.settings.reviewer_name | escape }}"
+                  width="369"
+                  height="369"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+            <span class="trust-reviews__slide-name">{{ next_block.settings.reviewer_name | escape }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      {%- comment -%} Review detail {%- endcomment -%}
+      <div class="trust-reviews__details">
+        {% for block in section.blocks %}
+          <div
+            class="trust-reviews__review{% if forloop.index0 == active_index %} is-active{% endif %}"
+            data-review-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="trust-reviews__stars" aria-hidden="true">
+              {% for i in (1..block.settings.star_rating) %}
+                <svg
+                  class="trust-reviews__star"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  {%- render 'icon', icon: 'star' -%}
+                </svg>
+              {% endfor %}
+            </div>
+            {% if block.settings.review_text != blank %}
+              <p class="trust-reviews__text">{{ block.settings.review_text | escape }}</p>
+            {% endif %}
+            <span class="trust-reviews__reviewer">{{ block.settings.reviewer_name | escape }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      {%- comment -%} Desktop CTA {%- endcomment -%}
+      {% if section.settings.button_text != blank %}
+        <div class="trust-reviews__cta-desktop">
+          <a
+            {% if section.settings.button_url != blank %}href="{{ section.settings.button_url }}"{% endif %}
+            class="button trust-reviews__btn trust-reviews__btn--desktop"
+          >
+            {{- section.settings.button_text | escape -}}
+          </a>
+        </div>
+      {% endif %}
+
+      {%- comment -%} Data island for JS {%- endcomment -%}
+      {% if block_count > 1 %}
+        <script type="application/json" id="trust-reviews-data-{{ section.id }}">
+          [
+            {%- for block in section.blocks -%}
+              {
+                {% if block.settings.image != blank %}
+                  "image": {{ block.settings.image | image_url: width: 1000 | json }},
+                  "alt": {{ block.settings.image.alt | default: block.settings.reviewer_name | json }},
+                {% else %}
+                  "image": "",
+                  "alt": "",
+                {% endif %}
+                "name": {{ block.settings.reviewer_name | json }}
+              }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ]
+        </script>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% if block_count > 1 %}
+<script>
+  (function() {
+    var sectionId = '{{ section.id }}';
+    var root = document.getElementById('trust-reviews-' + sectionId);
+    if (!root) return;
+
+    var dataEl = document.getElementById('trust-reviews-data-' + sectionId);
+    if (!dataEl) return;
+
+    var data;
+    try {
+      data = JSON.parse(dataEl.textContent);
+    } catch (e) {
+      return;
+    }
+
+    if (data.length < 2) return;
+
+    var prevSlot = root.querySelector('[data-slot="prev"]');
+    var activeSlot = root.querySelector('[data-slot="active"]');
+    var nextSlot = root.querySelector('[data-slot="next"]');
+    var prevBtn = root.querySelector('.trust-reviews__arrow--prev');
+    var nextBtn = root.querySelector('.trust-reviews__arrow--next');
+    var reviews = root.querySelectorAll('.trust-reviews__review');
+
+    var activeIndex = {{ active_index }};
+
+    function mod(n, m) {
+      return ((n % m) + m) % m;
+    }
+
+    function updateSlot(slotEl, blockData) {
+      if (!slotEl) return;
+      var img = slotEl.querySelector('.trust-reviews__image');
+      var name = slotEl.querySelector('.trust-reviews__slide-name');
+
+      if (img) {
+        if (blockData.image) {
+          img.src = blockData.image;
+          img.alt = blockData.alt || '';
+          img.style.display = '';
+        } else {
+          img.style.display = 'none';
+        }
+      }
+
+      if (name) {
+        name.textContent = blockData.name || '';
+      }
+    }
+
+    function updateCarousel() {
+      var prevIndex = mod(activeIndex - 1, data.length);
+      var nextIndex = mod(activeIndex + 1, data.length);
+
+      updateSlot(prevSlot, data[prevIndex]);
+      updateSlot(activeSlot, data[activeIndex]);
+      updateSlot(nextSlot, data[nextIndex]);
+
+      for (var i = 0; i < reviews.length; i++) {
+        var idx = parseInt(reviews[i].getAttribute('data-review-index'), 10);
+        if (idx === activeIndex) {
+          reviews[i].classList.add('is-active');
+        } else {
+          reviews[i].classList.remove('is-active');
+        }
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        activeIndex = mod(activeIndex - 1, data.length);
+        updateCarousel();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        activeIndex = mod(activeIndex + 1, data.length);
+        updateCarousel();
+      });
+    }
+  })();
+</script>
+{% endif %}
+
+{% stylesheet %}
+  .trust-reviews {
+    position: relative;
+  }
+
+  .trust-reviews__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(270deg, rgba(33, 121, 194, 0.2) 0%, rgba(141, 206, 249, 0.2) 51%, rgba(241, 220, 193, 0.2) 100%);
+    pointer-events: none;
+  }
+
+  .trust-reviews__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Headline */
+  .trust-reviews__headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    max-width: 353px;
+    width: 100%;
+  }
+
+  .trust-reviews__subtitle {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0.52px;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .trust-reviews__heading {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 34px;
+    letter-spacing: -0.52px;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .trust-reviews__highlight {
+    color: var(--color-primary);
+  }
+
+  /* Buttons */
+  .trust-reviews__btn {
+    border-radius: 60px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 24px 12px;
+    white-space: nowrap;
+  }
+
+  .trust-reviews__btn--desktop {
+    display: none;
+  }
+
+  .trust-reviews__cta-desktop {
+    display: none;
+  }
+
+  /* Carousel */
+  .trust-reviews__carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .trust-reviews__slide {
+    flex-shrink: 0;
+  }
+
+  .trust-reviews__slide--prev,
+  .trust-reviews__slide--next {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trust-reviews__image-wrapper--side {
+    width: 229px;
+    height: 229px;
+    overflow: hidden;
+  }
+
+  .trust-reviews__image-wrapper--center {
+    width: 294px;
+    height: 294px;
+    overflow: hidden;
+  }
+
+  .trust-reviews__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .trust-reviews__slide-name {
+    display: none;
+  }
+
+  .trust-reviews__arrow {
+    display: none;
+  }
+
+  /* Review detail */
+  .trust-reviews__details {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .trust-reviews__review {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    max-width: 298px;
+    width: 100%;
+  }
+
+  .trust-reviews__review.is-active {
+    display: flex;
+  }
+
+  .trust-reviews__stars {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+  }
+
+  .trust-reviews__star {
+    width: auto;
+    height: 13px;
+    fill: var(--color-primary);
+  }
+
+  .trust-reviews__text {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.14px;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .trust-reviews__reviewer {
+    font-family: var(--font-accent--family);
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #797D86;
+  }
+
+  /* Desktop overrides */
+  @media screen and (min-width: 750px) {
+    .trust-reviews__gradient {
+      background: linear-gradient(270deg, rgba(33, 121, 194, 0.1) 0%, rgba(141, 206, 249, 0.1) 51%, rgba(241, 220, 193, 0.1) 100%);
+    }
+
+    .trust-reviews__inner {
+      gap: 40px;
+    }
+
+    .trust-reviews__headline {
+      gap: 16px;
+      max-width: 1025px;
+    }
+
+    .trust-reviews__subtitle {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.72px;
+    }
+
+    .trust-reviews__heading {
+      font-size: 42px;
+      line-height: 55px;
+      letter-spacing: -0.84px;
+    }
+
+    .trust-reviews__btn--mobile {
+      display: none;
+    }
+
+    .trust-reviews__btn--desktop {
+      display: inline-block;
+    }
+
+    .trust-reviews__cta-desktop {
+      display: flex;
+      justify-content: center;
+    }
+
+    .trust-reviews__btn {
+      border-radius: 57px;
+      font-size: 16px;
+      line-height: 23px;
+      padding: 10px 34px 13px;
+    }
+
+    .trust-reviews__carousel {
+      gap: 24px;
+    }
+
+    .trust-reviews__image-wrapper--side {
+      width: 369px;
+      height: 369px;
+    }
+
+    .trust-reviews__image-wrapper--center {
+      width: 500px;
+      height: 500px;
+    }
+
+    .trust-reviews__slide-name {
+      display: block;
+      font-family: var(--font-accent--family);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.56px;
+      text-transform: uppercase;
+      color: #797D86;
+    }
+
+    .trust-reviews__arrow {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 100px;
+      background: #FFFFFF;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      line-height: 0;
+    }
+
+    .trust-reviews__review {
+      gap: 8px;
+      max-width: 499px;
+    }
+
+    .trust-reviews__star {
+      height: 21px;
+    }
+
+    .trust-reviews__text {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: 0;
+    }
+
+    .trust-reviews__reviewer {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.56px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trust reviews",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "COMPLETE CONFIDENCE IN YOUR WATER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by more than 10,000+ customers."
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Highlight text",
+      "default": "10,000+"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Read All Reviews"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Reviewer"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text"
+        },
+        {
+          "type": "range",
+          "id": "star_rating",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust reviews",
+      "category": "Social proof",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Jake V.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Annie M.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Adam W.",
+            "star_rating": 5
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

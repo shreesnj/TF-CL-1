@@ -478,6 +478,49 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "trust_reviews": {
+      "type": "trust-reviews",
+      "blocks": {
+        "review_jake": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2023-03-05-at-10-11-1-mobile-18492806.png",
+            "reviewer_name": "Jake V.",
+            "review_text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"",
+            "star_rating": 5
+          }
+        },
+        "review_annie": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2023-03-05-at-10-14-2-mobile-18492811.png",
+            "reviewer_name": "Annie M.",
+            "review_text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"",
+            "star_rating": 5
+          }
+        },
+        "review_adam": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/screenshot-2023-03-05-at-10-20-1-desktop-18492377.png",
+            "reviewer_name": "Adam W.",
+            "review_text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"",
+            "star_rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "review_jake",
+        "review_annie",
+        "review_adam"
+      ],
+      "settings": {
+        "section_width": "full-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
     }
   },
   "order": [
@@ -488,6 +531,7 @@
     "experience_editorial_aR4kT7",
     "centered_headline_cWm1",
     "filtration_technology_fTk8J2",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "trust_reviews"
   ]
 }
