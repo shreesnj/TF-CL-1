@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -141,7 +141,6 @@
         "category_6"
       ],
       "settings": {
-        "heading": "Shop by System",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "padding-block-start": 65,
@@ -214,10 +213,10 @@
         "description": "Our breakthrough filtration technology targets up to 73x more dangerous chemicals, contaminants, & toxins than typical carbon filters.",
         "primary_button_text": "Our Technology",
         "secondary_button_text": "Lab Test Results",
-        "video_label": "See it in action",
         "filter_image": "shopify://shop_images/exploding-filter2-1200x-1-2-mobile-18492617.png",
         "background_image": "shopify://shop_images/vid-bg-mobile-18492609.png",
         "video_thumbnail": "shopify://shop_images/larq-pitcher-step-1-2-mobile-18492611.png",
+        "video_label": "See it in action",
         "color_scheme": "scheme-5",
         "section_width": "full-width",
         "padding-block-start": 72,
