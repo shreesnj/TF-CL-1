@@ -1,0 +1,249 @@
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} spacing-style"
+  style="{% render 'spacing-style', settings: section.settings %}"
+  data-testid="shop-by-category-{{ section.id }}"
+>
+  <div class="shop-by-category__grid">
+    {% for block in section.blocks %}
+      <a
+        class="shop-by-category__item"
+        {% if block.settings.link != blank %}
+          href="{{ block.settings.link }}"
+        {% endif %}
+        {{ block.shopify_attributes }}
+      >
+        <div class="shop-by-category__image-wrapper">
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: block.settings.image.width
+              | image_tag:
+                sizes: '(min-width: 750px) 230px, 132px',
+                widths: '96,132,168,230,264,460',
+                loading: 'lazy',
+                class: 'shop-by-category__image',
+                alt: block.settings.image.alt | default: block.settings.title
+            }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'shop-by-category__placeholder' }}
+          {% endif %}
+        </div>
+        <span class="shop-by-category__title">{{ block.settings.title | escape }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+.shop-by-category__grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.shop-by-category__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.shop-by-category__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 132px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.shop-by-category__image-wrapper {
+  width: 132px;
+  height: 132px;
+  border-radius: 5px;
+  background-color: #F2F7FB;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-by-category__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.shop-by-category__placeholder {
+  width: 60%;
+  height: 60%;
+}
+
+.shop-by-category__title {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+  color: var(--color-foreground);
+}
+
+@media screen and (min-width: 750px) {
+  .shop-by-category__grid {
+    overflow: visible;
+    justify-content: space-between;
+  }
+
+  .shop-by-category__item {
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .shop-by-category__image-wrapper {
+    width: 230px;
+    height: 230px;
+    border-radius: 0;
+  }
+
+  .shop-by-category__title {
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0;
+    text-align: center;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 65
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "category": "t:categories.collections",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Filtered Pitcher"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Water Bottles"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Under Sink System"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Fridge Filter"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Replacement Filters"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Accessories"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
