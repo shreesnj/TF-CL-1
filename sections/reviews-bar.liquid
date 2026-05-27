@@ -1,0 +1,178 @@
+{% liquid
+  assign gradient_opacity_decimal = section.settings.gradient_opacity | times: 0.01
+  assign start_color = section.settings.gradient_color_start | color_modify: 'alpha', gradient_opacity_decimal
+  assign end_color = section.settings.gradient_color_end | color_modify: 'alpha', gradient_opacity_decimal
+%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="reviews-bar spacing-style section section--full-width color-{{ section.settings.color_scheme }}"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%};
+    background: linear-gradient(90deg, {{ start_color }} 0%, {{ end_color }} 100%);
+  "
+>
+  <div class="reviews-bar__content">
+    {% if section.settings.review_text != blank %}
+      <span class="reviews-bar__text">{{ section.settings.review_text | escape }}</span>
+    {% endif %}
+    <div class="reviews-bar__stars" aria-hidden="true">
+      {% for i in (1..section.settings.star_count) %}
+        <svg
+          class="reviews-bar__star"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+          focusable="false"
+        >
+          {%- render 'icon', icon: 'star' -%}
+        </svg>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .reviews-bar {
+    padding-block-start: var(--padding-block-start, 14px);
+    padding-block-end: var(--padding-block-end, 14px);
+  }
+
+  .reviews-bar__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .reviews-bar__text {
+    color: var(--color-foreground);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.14px;
+    text-align: center;
+  }
+
+  .reviews-bar__stars {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+  }
+
+  .reviews-bar__star {
+    width: auto;
+    height: 12px;
+    fill: var(--color-primary);
+  }
+
+  @media screen and (min-width: 750px) {
+    .reviews-bar__content {
+      gap: 16px;
+    }
+
+    .reviews-bar__text {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: 0;
+    }
+
+    .reviews-bar__stars {
+      gap: 3.5px;
+    }
+
+    .reviews-bar__star {
+      height: 14px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Reviews bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "Rated 4.9 stars across 10,000+ Reviews"
+    },
+    {
+      "type": "range",
+      "id": "star_count",
+      "label": "Stars",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Gradient"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_start",
+      "label": "Start color",
+      "default": "#C1EFFA"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_end",
+      "label": "End color",
+      "default": "#8DCEF9"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews bar"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
