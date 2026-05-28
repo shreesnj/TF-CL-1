@@ -526,6 +526,79 @@
       border-radius: 16px;
     }
   }
+
+  /* ============================================================
+   * PLP alignment refinements (Figma)
+   * ============================================================ */
+
+  /* Section title sits ~32px below the toolbar divider on desktop */
+  .collection__section-title {
+    padding-block-start: 32px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection__section-title {
+      padding-block-start: 20px;
+    }
+  }
+
+  /* Inline section dividers ("Section Title" mid-grid) sit slightly tighter */
+  .collection__section-title--inline {
+    padding-block-start: 16px;
+  }
+
+  /* ============================================================
+   * Filter drawer: Apply LEFT, Clear RIGHT (Figma button order)
+   * ============================================================ */
+
+  .facets__drawer-actions {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Apply button (See Results) grows to fill leftover space */
+  .facets__drawer-actions .facets__see-results {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 11px 24px;
+    font-weight: 400;
+  }
+
+  /* Clear All sits content-width on the right */
+  .facets__drawer-actions .facets__clear-all {
+    flex: 0 0 auto;
+    padding: 11px 24px;
+    font-weight: 400;
+  }
+
+  /* Render "(N)" inline in drawer title instead of a separate badge */
+  .facets-drawer__title {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .facets-drawer__title .facets__bubble {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    font: inherit;
+    border: none;
+    display: inline;
+  }
+
+  .facets-drawer__title .facets__bubble::before {
+    content: '(';
+  }
+
+  .facets-drawer__title .facets__bubble::after {
+    content: ')';
+  }
 {% endstylesheet %}
 
 {% schema %}
