@@ -1035,7 +1035,7 @@
       "name": "Hero (Intro)",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/vid-bg-desktop-18492512.png",
+        "image_1": "shopify://shop_images/vid-bg-mobile-18492609.png",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": true,
