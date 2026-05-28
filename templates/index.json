@@ -955,9 +955,120 @@
         "padding-block-start": 40,
         "padding-block-end": 60
       }
+    },
+    "hero_intro": {
+      "type": "hero",
+      "blocks": {
+        "eyebrow_intro": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>ADVANCED WATER FILTRATION</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "clamp(13px, 1.04vw, 18px)",
+            "line_height": "1.4",
+            "letter_spacing": "0",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "#FFFFFF",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "heading_intro": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>Truly smart filtration technology at home and on-the-go</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "clamp(32px, 4.7vw, 64px)",
+            "line_height": "1.2",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "#FFFFFF",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_intro": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop All Products",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "eyebrow_intro",
+        "heading_intro",
+        "button_intro"
+      ],
+      "name": "Hero (Intro)",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/vid-bg-desktop-18492512.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/vid-bg-mobile-18492609.png",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-end",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 56,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0
+      }
     }
   },
   "order": [
+    "hero_intro",
     "shop_by_category_kX7mR2",
     "shop_by_bestsellers_Bx4mK1",
     "shop_by_system_Qx8mN3",
