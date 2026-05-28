@@ -55,7 +55,7 @@
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -86,10 +86,10 @@
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "font": "var(--font-heading--family)",
+                "font_size": "1.25rem",
                 "line_height": "normal",
-                "letter_spacing": "normal",
+                "letter_spacing": "tight",
                 "case": "none",
                 "wrap": "pretty",
                 "color": "var(--color-foreground)",

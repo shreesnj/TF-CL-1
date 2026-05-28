@@ -572,6 +572,28 @@
     font-weight: 400;
   }
 
+  /* ============================================================
+   * Product cards (Figma 1849:1617): 20/26 medium title, light
+   * reviews count, 24px image-to-stars gap
+   * ============================================================ */
+
+  /* Figma title: Fellix 20px/26px weight 500 letter-spacing -0.4px.
+     Title renders via the `text` snippet inside <a ref="productTitleLink">
+     wrapping <p role="heading"> with class .text-block.paragraph. */
+  .product-grid__item a[ref="productTitleLink"] .text-block,
+  .product-grid__item a[ref="productTitleLink"] [role="heading"] {
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    line-height: 26px;
+  }
+
+  /* Reviews count text: Figma weight 300 (light), 14/17 */
+  .product-grid__item .rating-count {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
   /* Render "(N)" inline in drawer title instead of a separate badge */
   .facets-drawer__title {
     display: flex;
