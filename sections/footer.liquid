@@ -154,6 +154,66 @@
       line-height: 1.375;
     }
   }
+
+  /* ============================================================
+   * Menu columns: now built from group + text + button blocks
+   * (linklist-backed menu blocks don't render when the merchant
+   *  hasn't created shop/technology/support/company linklists in
+   *  admin, so we hardcode the structure in footer-group.json).
+   * ============================================================ */
+
+  /* Menu link buttons styled as plain footer links */
+  .footer-content > .group-block .button,
+  .footer-content > .group-block .button-unstyled,
+  .footer-content > .group-block .button-secondary {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--color-foreground);
+    font-weight: 400;
+    text-align: left;
+    box-shadow: none;
+    min-height: auto;
+  }
+
+  .footer-content > .group-block .button:hover {
+    background: transparent;
+    text-decoration: underline;
+  }
+
+  /* Desktop link size (16/22 per Figma) */
+  @media screen and (min-width: 750px) {
+    .footer-content > .group-block .button {
+      font-size: 1rem;
+      line-height: 1.375;
+    }
+  }
+
+  /* Mobile sizes — inline `style="--font-size: ..."` on text blocks
+     beats normal media-query CSS, so force with !important. */
+  @media screen and (max-width: 749px) {
+    .footer-content--first-full-width > :first-child .text-block {
+      font-size: 1.25rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .footer-content > .group-block > .text-block {
+      font-size: 0.875rem !important;
+      line-height: 1.43 !important;
+    }
+
+    .footer-content > .group-block .button {
+      font-size: 0.875rem;
+      line-height: 1.43;
+    }
+  }
+
+  /* Quiz card: ensure a visible dark background even if the bg image
+     reference doesn't resolve in Shopify Files. */
+  .footer-content .group-block:has(.background-image-container) {
+    background-color: #1A2030;
+    border-radius: 8px;
+  }
 {% endstylesheet %}
 
 {% schema %}

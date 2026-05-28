@@ -62,7 +62,7 @@
                 "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
-                "font_size": "1.25rem",
+                "font_size": "1.75rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -101,76 +101,556 @@
           ]
         },
         "menu_shop": {
-          "type": "menu",
+          "type": "group",
           "settings": {
-            "menu": "shop",
-            "heading": "Shop",
-            "menu_spacing": 16,
-            "show_as_accordion": true,
-            "accordion_icon": "caret",
-            "accordion_dividers": true,
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
             "inherit_color_scheme": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph",
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {
+            "shop_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Shop</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "shop_link1": {
+              "type": "button",
+              "settings": {
+                "label": "Product Resources",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "shop_link2": {
+              "type": "button",
+              "settings": {
+                "label": "Help & FAQ",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "shop_link3": {
+              "type": "button",
+              "settings": {
+                "label": "Returns & Shipping",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "shop_link4": {
+              "type": "button",
+              "settings": {
+                "label": "Warranty Info",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "shop_link5": {
+              "type": "button",
+              "settings": {
+                "label": "Contact Us",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "shop_heading",
+            "shop_link1",
+            "shop_link2",
+            "shop_link3",
+            "shop_link4",
+            "shop_link5"
+          ]
         },
         "menu_technology": {
-          "type": "menu",
+          "type": "group",
           "settings": {
-            "menu": "technology",
-            "heading": "Technology",
-            "menu_spacing": 16,
-            "show_as_accordion": true,
-            "accordion_icon": "caret",
-            "accordion_dividers": true,
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
             "inherit_color_scheme": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph",
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {
+            "tech_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Technology</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "tech_link1": {
+              "type": "button",
+              "settings": {
+                "label": "Product Resources",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "tech_link2": {
+              "type": "button",
+              "settings": {
+                "label": "Help & FAQ",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "tech_link3": {
+              "type": "button",
+              "settings": {
+                "label": "Returns & Shipping",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "tech_link4": {
+              "type": "button",
+              "settings": {
+                "label": "Warranty Info",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "tech_link5": {
+              "type": "button",
+              "settings": {
+                "label": "Contact Us",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "tech_heading",
+            "tech_link1",
+            "tech_link2",
+            "tech_link3",
+            "tech_link4",
+            "tech_link5"
+          ]
         },
         "menu_support": {
-          "type": "menu",
+          "type": "group",
           "settings": {
-            "menu": "support",
-            "heading": "Support",
-            "menu_spacing": 16,
-            "show_as_accordion": true,
-            "accordion_icon": "caret",
-            "accordion_dividers": true,
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
             "inherit_color_scheme": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph",
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {
+            "support_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Support</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "support_link1": {
+              "type": "button",
+              "settings": {
+                "label": "Product Resources",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "support_link2": {
+              "type": "button",
+              "settings": {
+                "label": "Help & FAQ",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "support_link3": {
+              "type": "button",
+              "settings": {
+                "label": "Returns & Shipping",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "support_link4": {
+              "type": "button",
+              "settings": {
+                "label": "Warranty Info",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "support_link5": {
+              "type": "button",
+              "settings": {
+                "label": "Contact Us",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "support_heading",
+            "support_link1",
+            "support_link2",
+            "support_link3",
+            "support_link4",
+            "support_link5"
+          ]
         },
         "menu_company": {
-          "type": "menu",
+          "type": "group",
           "settings": {
-            "menu": "company",
-            "heading": "Company",
-            "menu_spacing": 16,
-            "show_as_accordion": true,
-            "accordion_icon": "caret",
-            "accordion_dividers": true,
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
             "inherit_color_scheme": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph",
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
-          }
+          },
+          "blocks": {
+            "company_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Company</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "company_link1": {
+              "type": "button",
+              "settings": {
+                "label": "Product Resources",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "company_link2": {
+              "type": "button",
+              "settings": {
+                "label": "Help & FAQ",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "company_link3": {
+              "type": "button",
+              "settings": {
+                "label": "Returns & Shipping",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "company_link4": {
+              "type": "button",
+              "settings": {
+                "label": "Warranty Info",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            },
+            "company_link5": {
+              "type": "button",
+              "settings": {
+                "label": "Contact Us",
+                "link": "/",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "company_heading",
+            "company_link1",
+            "company_link2",
+            "company_link3",
+            "company_link4",
+            "company_link5"
+          ]
         },
         "quiz_cta": {
           "type": "group",
