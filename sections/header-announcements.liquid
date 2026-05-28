@@ -193,13 +193,18 @@
   }
 
   @media screen and (max-width: 749px) {
-    .announcement-bar__slide {
-      font-size: 0.75rem;
-      line-height: 1.17;
+    /* Figma mobile banner: 12px / 14px line-height, 14px top+bottom
+       padding → 56px total. The text block sets --font-size inline so
+       force with !important to override. */
+    .announcement-bar__slide,
+    .announcement-bar__slide .text-block,
+    .announcement-bar__text {
+      font-size: 0.75rem !important;
+      line-height: 14px !important;
     }
 
     .announcement-bar {
-      padding-block: 14px;
+      padding-block: 14px !important;
     }
   }
 {% endstylesheet %}
