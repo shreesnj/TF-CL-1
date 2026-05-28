@@ -1155,7 +1155,60 @@
     /* Override nav link font-size to 17px to match Figma 17px/24px spec */
     #header-component[data-menu-style='menu'] .menu-list__link {
       font-size: 1.0625rem;
+      line-height: 24px;
     }
+
+    /* Desktop nav row: Figma is 80px total (24px content + 28px top + 28px
+       bottom). Override the theme's default --padding-sm (≈16px). */
+    #header-component[data-menu-style='menu'] .header__row--top .header__columns {
+      --padding-block-start: 28px;
+      --padding-block-end: 28px;
+    }
+
+    /* Header action icons per Figma (≈20px square) */
+    .header-actions__action:not(.account-button) svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  /* ============================================================
+   * Mobile header refinements (Figma 1849:2748)
+   * ============================================================ */
+  @media screen and (max-width: 749px) {
+    /* Banner: Figma is 56px tall with 12px/14px text wrapping to 2 lines.
+       Inline style on the announcement text sets --font-size: 0.875rem
+       (14px) for desktop — override with !important so mobile gets 12px. */
+    .header-section .announcement-bar__slide,
+    .header-section .announcement-bar__text,
+    .header-section .announcement-bar__slide .text-block {
+      font-size: 0.75rem !important;
+      line-height: 14px !important;
+    }
+
+    /* Banner padding tuned so 14 (top) + 28 (2 × 14px line-height) + 14
+       (bottom) = 56px total height per Figma. */
+    .header-section .announcement-bar {
+      padding-block: 14px !important;
+    }
+
+    /* Nav row: Figma is 60px total (29px logo + ~15.5px top + ~15.5px
+       bottom). Round to 16px. */
+    #header-component .header__columns {
+      --padding-block-start: 16px;
+      --padding-block-end: 16px;
+    }
+
+    /* Figma mobile RSL shows only account + cart on the right — no
+       search icon. Hide search action on mobile. */
+    #header-component .header__row--top .search-action {
+      display: none;
+    }
+
+    /* Hamburger sits at 18px from the left edge per Figma — Horizon's
+       mobile bookend grid uses 44px columns, which already aligns near
+       18px after the page-width gutter. No CSS override needed unless
+       padding-inline drifts. */
   }
 {% endstylesheet %}
 
