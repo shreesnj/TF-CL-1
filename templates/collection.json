@@ -4,11 +4,9 @@
       "type": "collection-hero",
       "settings": {
         "color_scheme": "scheme-1",
-        "gradient_color_start": "#C1EFFA",
-        "gradient_color_end": "#8DCEF9",
-        "gradient_opacity": 20,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "background_color": "#F2F7FB",
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     },
     "main": {
