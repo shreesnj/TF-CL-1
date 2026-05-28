@@ -1,0 +1,98 @@
+{% doc %}
+  Breadcrumbs
+
+  Renders a breadcrumb navigation bar with Home link and current page title.
+  Auto-detects template context (page, collection, product) and builds the trail.
+
+  @example
+    {% render 'breadcrumbs' %}
+{% enddoc %}
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    <li class="breadcrumbs__item">
+      <a class="breadcrumbs__link" href="/">Home</a>
+    </li>
+    {% if template.name == 'page' and page %}
+      <li class="breadcrumbs__item">
+        <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+        <span class="breadcrumbs__current" aria-current="page">{{ page.title | escape }}</span>
+      </li>
+    {% elsif template.name == 'product' and product %}
+      {% if product.collections.size > 0 %}
+        {% assign breadcrumb_collection = product.collections.first %}
+        <li class="breadcrumbs__item">
+          <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+          <a class="breadcrumbs__link" href="{{ breadcrumb_collection.url }}">{{ breadcrumb_collection.title | escape }}</a>
+        </li>
+      {% endif %}
+      <li class="breadcrumbs__item">
+        <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+        <span class="breadcrumbs__current" aria-current="page">{{ product.title | escape }}</span>
+      </li>
+    {% elsif template.name == 'collection' and collection %}
+      <li class="breadcrumbs__item">
+        <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+        <span class="breadcrumbs__current" aria-current="page">{{ collection.title | escape }}</span>
+      </li>
+    {% elsif template.name == 'blog' and blog %}
+      <li class="breadcrumbs__item">
+        <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+        <span class="breadcrumbs__current" aria-current="page">{{ blog.title | escape }}</span>
+      </li>
+    {% elsif template.name == 'article' and article %}
+      {% if blog %}
+        <li class="breadcrumbs__item">
+          <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+          <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title | escape }}</a>
+        </li>
+      {% endif %}
+      <li class="breadcrumbs__item">
+        <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+        <span class="breadcrumbs__current" aria-current="page">{{ article.title | escape }}</span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    margin-block-end: 16px;
+  }
+
+  .breadcrumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: var(--color-foreground);
+  }
+
+  .breadcrumbs__item {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumbs__separator {
+    margin-inline: 6px;
+  }
+
+  .breadcrumbs__link {
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .breadcrumbs__link:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumbs__current {
+    color: var(--color-foreground);
+  }
+</style>
