@@ -291,10 +291,10 @@
           aria-haspopup="dialog"
         >
           <span class="svg-wrapper">
-            {{ 'icon-filter.svg' | inline_asset_content }}
+            {{ 'icon-filter-sliders.svg' | inline_asset_content }}
           </span>
 
-          {{ 'actions.show_filters' | t }}
+          Filter
 
           {% if total_active_values > 0 %}
             <div
@@ -1325,6 +1325,7 @@
       margin-right: auto;
       color: #797D86;
       font-size: 16px;
+      line-height: 22px;
     }
   }
 
@@ -1335,6 +1336,8 @@
       border: 1px solid #D3D8DD;
       padding: 10px 24px;
       gap: 8px;
+      font-size: 14px;
+      line-height: 21px;
     }
   }
 
@@ -1355,6 +1358,21 @@
     font-size: 12px;
     line-height: 17px;
     letter-spacing: 0.12px;
+  }
+
+  /* Mobile: full-width toggle pill with icon on the right */
+  .facets-toggle__wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .facets-toggle__button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .facets-toggle__button .svg-wrapper {
+    order: 1;
   }
 
   /* Mobile products count */
