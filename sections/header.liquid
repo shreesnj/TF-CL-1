@@ -47,12 +47,22 @@
   endif
 
   capture logo
-    content_for 'block', type: '_header-logo', id: 'header-logo'
+    # Hardcoded ClearlyFiltered logo SVG (Figma 197×40 desktop, 140×29 mobile).
+    # The _header-logo block falls back to shop-name text when settings.logo is
+    # blank, which the admin hasn't uploaded — inline the brand SVG directly so
+    # the logo always renders regardless of merchant config.
+    echo '<a href="/" class="header-logo size-style spacing-style" style="--font-family: var(--font-body--family); --font-style: var(--font-body--style); --font-weight: 600;"><span class="header-logo__svg" role="img" aria-label="' | append: shop.name | append: '" style="--header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;">'
+    echo 'logo-clearly-filtered.svg' | inline_asset_content
+    echo '</span></a>'
   endcapture
 
   # theme-check-disable UniqueStaticBlockId
+  # Hardcoded 6-item menu (3 left | logo | 3 right) per Figma. Bypasses the
+  # main-menu linklist (which currently has demo data — Games / Athletes /
+  # Science / …). Mobile drawer still uses the linklist; that menu can be
+  # corrected separately in Shopify admin.
   capture menu
-    content_for 'block', type: '_header-menu', id: 'header-menu'
+    echo '<nav class="header-menu menu-list" aria-label="Main" style="width:100%;"><ul class="menu-list__list list-unstyled" role="list" style="display:flex;align-items:center;gap:30px;margin:0;padding:0;width:100%;list-style:none;"><li class="menu-list__list-item" style="display:flex;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Shop</a></li><li class="menu-list__list-item" style="display:flex;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Replacement Filters</a></li><li class="menu-list__list-item" style="display:flex;margin-inline-end:auto;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Technology</a></li><li class="menu-list__list-item" style="display:flex;margin-inline-start:auto;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Water Report</a></li><li class="menu-list__list-item" style="display:flex;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Learn</a></li><li class="menu-list__list-item" style="display:flex;"><a href="/" class="menu-list__link" style="text-decoration:none;color:var(--color-foreground);font-family:var(--font-body--family);font-size:1.0625rem;line-height:24px;">Help</a></li></ul></nav>'
   endcapture
 
   capture drawer_menu
