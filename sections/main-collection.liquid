@@ -131,12 +131,20 @@
   }
 
   .product-grid__promo--banner {
-    /* Full-width so row 2 is just the promo (no product backfill into
-       the leftover cell when promo + divider both fire at the same
-       loop index). This makes "3 products + promo as 4th" a clean
-       Section Title block. */
-    grid-column: 1 / -1;
+    /* Figma promo banner = 2 cols (≈1023×495), same height as a
+       product card. On mobile the @media block below switches to
+       full-width since 2 cols ≈ full viewport there anyway. */
+    grid-column: span 2;
     min-width: 0;
+  }
+
+  /* `dense` lets the next product backfill the leftover cell on row 2
+     when the 2-col promo lands at col 1 (desktop col 3 / mobile col 2).
+     Without dense, mobile leaves a visible gap because the full-width
+     banner can't fit beside the 3rd product and gets pushed to its
+     own row, stranding the cell. */
+  .product-grid {
+    grid-auto-flow: row dense;
   }
 
   .product-grid__section-divider {
