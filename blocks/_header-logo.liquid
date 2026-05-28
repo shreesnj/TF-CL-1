@@ -53,14 +53,25 @@
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {% if settings.logo != blank %}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: settings.logo_height,
+        alt_text_fallback: alt_text_fallback,
+        text_fallback: shop.name,
+        style: logo_style
+      %}
+    {% else %}
+      <span
+        class="header-logo__svg"
+        style="--header-logo-image-height: {{ settings.logo_height }}px; --header-logo-image-height-mobile: {{ settings.logo_height_mobile }}px;"
+        role="img"
+        aria-label="{{ shop.name }}"
+      >
+        {{- 'logo-clearly-filtered.svg' | inline_asset_content -}}
+      </span>
+    {% endif %}
   </span>
 
   {% if use_inverse_logo %}
@@ -126,6 +137,21 @@
     @media screen and (min-width: 750px) {
       height: var(--header-logo-image-height);
       width: var(--header-logo-image-width);
+    }
+  }
+
+  .header-logo__svg {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo__svg svg {
+    display: block;
+    width: auto;
+    height: var(--header-logo-image-height-mobile, 29px);
+
+    @media screen and (min-width: 750px) {
+      height: var(--header-logo-image-height, 40px);
     }
   }
 

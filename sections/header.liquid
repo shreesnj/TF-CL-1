@@ -50,10 +50,6 @@
     content_for 'block', type: '_header-logo', id: 'header-logo'
   endcapture
 
-  assign utility_icons_src = 'icons.svg' | asset_url
-  assign utility_icons_html = '<img src="' | append: utility_icons_src | append: '" alt="" class="header__utility-icons mobile:hidden" width="125" height="22" aria-hidden="true">'
-  assign logo = utility_icons_html | append: logo
-
   # theme-check-disable UniqueStaticBlockId
   capture menu
     content_for 'block', type: '_header-menu', id: 'header-menu'
@@ -1151,13 +1147,9 @@
       margin-inline-start: auto;
     }
 
-    /* Utility icons (search, account, cart) positioned to the left of the centered logo */
-    #header-component[data-menu-style='menu'] .header__utility-icons {
-      position: absolute;
-      z-index: 1;
-      right: calc(50% + 130px);
-      top: 50%;
-      transform: translateY(-50%);
+    /* Nav link spacing to match Figma 30px item gap */
+    #header-component[data-menu-style='menu'] .menu-list__list {
+      gap: 30px;
     }
 
     /* Override nav link font-size to 17px to match Figma 17px/24px spec */
