@@ -479,9 +479,20 @@
     }
   }
 
-  /* Inline section dividers ("Section Title" mid-grid) sit slightly tighter */
+  /* Inline section dividers ("Section Title" mid-grid).
+     Figma desktop: ~120px breathing room above the title, ~60px below.
+     With 32px grid row-gap + 32px on .product-grid__section-divider
+     parent already accounted for, add 56px more on top and 32px below. */
   .collection__section-title--inline {
-    padding-block-start: 16px;
+    padding-block-start: 56px;
+    padding-block-end: 32px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection__section-title--inline {
+      padding-block-start: 32px;
+      padding-block-end: 16px;
+    }
   }
 
   /* ============================================================
