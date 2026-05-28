@@ -9,34 +9,25 @@
  */
 {
   "sections": {
-    "marquee_trust_bar": {
-      "type": "marquee",
+    "hero_intro": {
+      "type": "hero",
       "blocks": {
-        "icon_1": {
-          "type": "icon",
-          "settings": {
-            "icon": "check_box",
-            "width": 20,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_1": {
+        "eyebrow_intro": {
           "type": "text",
+          "name": "t:names.heading",
           "settings": {
-            "text": "<p>MADE IN THE USA WITH MEDICAL-GRADE MATERIALS</p>",
+            "text": "<p>ADVANCED WATER FILTRATION</p>",
             "width": "fit-content",
-            "max_width": "normal",
+            "max_width": "none",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
+            "font_size": "clamp(13px, 1.04vw, 18px)",
+            "line_height": "1.4",
+            "letter_spacing": "0",
             "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
+            "wrap": "pretty",
+            "color": "#FFFFFF",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -47,31 +38,22 @@
           },
           "blocks": {}
         },
-        "icon_2": {
-          "type": "icon",
-          "settings": {
-            "icon": "clipboard",
-            "width": 20,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_2": {
+        "heading_intro": {
           "type": "text",
+          "name": "t:names.heading",
           "settings": {
-            "text": "<p>LAB TESTED & VERIFIED BY EPA/NSF STANDARDS</p>",
+            "text": "<h1>Truly smart filtration technology at home and on-the-go</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
+            "font_size": "clamp(32px, 4.7vw, 64px)",
+            "line_height": "1.2",
+            "letter_spacing": "-0.02em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "#FFFFFF",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -82,61 +64,60 @@
           },
           "blocks": {}
         },
-        "icon_3": {
-          "type": "icon",
+        "button_intro": {
+          "type": "button",
+          "name": "t:names.button",
           "settings": {
-            "icon": "star",
-            "width": 20,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_3": {
-          "type": "text",
-          "settings": {
-            "text": "<p>LIMITED LIFETIME WARRANTY</p>",
+            "label": "Shop All Products",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
             "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "uppercase",
-            "wrap": "nowrap",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "icon_1",
-        "text_1",
-        "icon_2",
-        "text_2",
-        "icon_3",
-        "text_3"
+        "eyebrow_intro",
+        "heading_intro",
+        "button_intro"
       ],
+      "name": "Hero (Intro)",
       "settings": {
-        "movement_direction": "normal",
-        "color_scheme": "scheme-5",
-        "padding-block-start": 38,
-        "padding-block-end": 38,
-        "gap_between_elements": 48,
-        "show_gradient_bar": true,
-        "gradient_bar_height": 4,
-        "gradient_color_start": "#2179c2",
-        "gradient_color_mid": "#8dcef9",
-        "gradient_color_end": "#f1dcc1"
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/vid-bg-mobile-18492609.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/vid-bg-mobile-18492609.png",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-end",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "overlay_color_mobile": "#0000007a",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 0,
+        "padding-block-end": 56
       }
     },
     "shop_by_category_kX7mR2": {
@@ -207,22 +188,6 @@
         "padding-block-end": 65
       }
     },
-    "shop_by_bestsellers_Bx4mK1": {
-      "type": "shop-by-bestsellers",
-      "settings": {
-        "collection": "all",
-        "heading": "Shop Best Sellers",
-        "max_products": 16,
-        "show_reviews": true,
-        "button_text": "Shop All Products",
-        "button_url": "",
-        "mobile_link_text": "Shop All",
-        "section_width": "page-width",
-        "color_scheme": "scheme-2",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
     "shop_by_system_Qx8mN3": {
       "type": "shop-by-system",
       "blocks": {
@@ -269,6 +234,22 @@
         "heading": "Shop by System",
         "section_width": "page-width",
         "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "shop_by_bestsellers_Bx4mK1": {
+      "type": "shop-by-bestsellers",
+      "settings": {
+        "collection": "all",
+        "heading": "Shop Best Sellers",
+        "max_products": 16,
+        "show_reviews": true,
+        "button_text": "Shop All Products",
+        "button_url": "",
+        "mobile_link_text": "Shop All",
+        "section_width": "page-width",
+        "color_scheme": "scheme-2",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -362,6 +343,7 @@
         "contaminant_label": "CONTAMINANTS WE REMOVE: NEW YORK",
         "contaminant_list": "Haloacetic acids (HAA5), Chromium, Chloroform, Trichloroacetic Acid, Bromoform, 1,4-Dioxane + 5 more.",
         "button_text": "Take the Quiz",
+        "button_url": "",
         "contaminant_count": "14",
         "location_label": "TOTAL CONTAMINANTS FOUND IN:",
         "location_city": "New York City",
@@ -956,51 +938,34 @@
         "padding-block-end": 60
       }
     },
-    "hero_intro": {
-      "type": "hero",
+    "marquee_trust_bar": {
+      "type": "marquee",
       "blocks": {
-        "eyebrow_intro": {
-          "type": "text",
-          "name": "t:names.heading",
+        "icon_1": {
+          "type": "icon",
           "settings": {
-            "text": "<p>ADVANCED WATER FILTRATION</p>",
-            "width": "fit-content",
-            "max_width": "none",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "clamp(13px, 1.04vw, 18px)",
-            "line_height": "1.4",
-            "letter_spacing": "0",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "color": "#FFFFFF",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "icon": "check_box",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
-        "heading_intro": {
+        "text_1": {
           "type": "text",
-          "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Truly smart filtration technology at home and on-the-go</h1>",
+            "text": "<p>MADE IN THE USA WITH MEDICAL-GRADE MATERIALS</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "clamp(32px, 4.7vw, 64px)",
-            "line_height": "1.2",
-            "letter_spacing": "-0.02em",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "#FFFFFF",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1011,71 +976,108 @@
           },
           "blocks": {}
         },
-        "button_intro": {
-          "type": "button",
-          "name": "t:names.button",
+        "icon_2": {
+          "type": "icon",
           "settings": {
-            "label": "Shop All Products",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
+            "icon": "clipboard",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LAB TESTED & VERIFIED BY EPA/NSF STANDARDS</p>",
             "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_3": {
+          "type": "icon",
+          "settings": {
+            "icon": "star",
+            "width": 20,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>LIMITED LIFETIME WARRANTY</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "eyebrow_intro",
-        "heading_intro",
-        "button_intro"
+        "icon_1",
+        "text_1",
+        "icon_2",
+        "text_2",
+        "icon_3",
+        "text_3"
       ],
-      "name": "Hero (Intro)",
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/vid-bg-mobile-18492609.png",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": true,
-        "media_type_1_mobile": "image",
-        "image_1_mobile": "shopify://shop_images/vid-bg-mobile-18492609.png",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "flex-end",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#00000066",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 56,
-        "padding-inline-start": 0,
-        "padding-inline-end": 0
+        "movement_direction": "normal",
+        "color_scheme": "scheme-5",
+        "padding-block-start": 38,
+        "padding-block-end": 38,
+        "gap_between_elements": 48,
+        "show_gradient_bar": true,
+        "gradient_bar_height": 4,
+        "gradient_color_start": "#2179c2",
+        "gradient_color_mid": "#8dcef9",
+        "gradient_color_end": "#f1dcc1"
       }
     }
   },
   "order": [
     "hero_intro",
     "shop_by_category_kX7mR2",
-    "shop_by_bestsellers_Bx4mK1",
-    "shop_by_system_Qx8mN3",
     "experience_editorial_aR4kT7",
+    "shop_by_system_Qx8mN3",
+    "quiz_section",
+    "shop_by_bestsellers_Bx4mK1",
     "centered_headline_cWm1",
     "filtration_technology_fTk8J2",
-    "quiz_section",
     "product_list_fa6P9H",
     "trust_reviews",
     "from_the_blog",
