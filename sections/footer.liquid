@@ -134,11 +134,24 @@
       display: none;
     }
 
-    /* Mobile menu heading and item font sizes (14px) */
+    /* Mobile menu heading and item font sizes (Figma: 14px / line-height 20px) */
     .footer-content .menu__heading,
     .footer-content .menu__item {
       font-size: 0.875rem;
       line-height: 1.43;
+    }
+  }
+
+  /* Desktop menu typography (Figma: heading 18px/25px, link 16px/22px) */
+  @media screen and (min-width: 750px) {
+    .footer-content .menu__heading {
+      font-size: 1.125rem;
+      line-height: 1.39;
+    }
+
+    .footer-content .menu__item {
+      font-size: 1rem;
+      line-height: 1.375;
     }
   }
 {% endstylesheet %}
