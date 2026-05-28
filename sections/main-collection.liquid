@@ -131,7 +131,11 @@
   }
 
   .product-grid__promo--banner {
-    grid-column: span 2;
+    /* Full-width so row 2 is just the promo (no product backfill into
+       the leftover cell when promo + divider both fire at the same
+       loop index). This makes "3 products + promo as 4th" a clean
+       Section Title block. */
+    grid-column: 1 / -1;
     min-width: 0;
   }
 
