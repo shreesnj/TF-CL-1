@@ -6,73 +6,90 @@
     --collection-hero-background: {{ section.settings.background_color | default: '#F2F7FB' }};
   "
 >
-  <div class="page-width">
-    <div class="collection-hero__content">
-      {% if collection.title != blank %}
-        <h1 class="collection-hero__heading">{{ collection.title }}</h1>
-      {% endif %}
+  <div class="collection-hero__content">
+    {% if collection.title != blank %}
+      <h1 class="collection-hero__heading">{{ collection.title }}</h1>
+    {% endif %}
 
-      {% if collection.description != blank %}
-        <div class="collection-hero__description">{{ collection.description }}</div>
-      {% endif %}
-    </div>
+    {% if collection.description != blank %}
+      <div class="collection-hero__description">{{ collection.description }}</div>
+    {% endif %}
   </div>
 </div>
 
 {% stylesheet %}
+  /* Mobile-first base: Figma mobile spec (100/18/24/18) */
   .collection-hero {
     position: relative;
-    padding-block-start: var(--collection-hero-padding-top, 64px);
-    padding-block-end: var(--collection-hero-padding-bottom, 64px);
     background-color: var(--collection-hero-background, #F2F7FB);
     overflow: hidden;
+    padding-block-start: 100px;
+    padding-block-end: 24px;
+    padding-inline: 18px;
   }
 
   .collection-hero__content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    max-width: 495px;
+    gap: 12px;
+    max-width: 100%;
   }
 
   .collection-hero__heading {
-    font-size: 56px;
-    line-height: 73px;
-    letter-spacing: -1.12px;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.6px;
     font-weight: 400;
     margin: 0;
     color: var(--color-foreground);
   }
 
   .collection-hero__description {
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.14px;
     font-weight: 400;
     color: var(--color-foreground);
   }
 
-  @media screen and (max-width: 749px) {
+  /* Tablet and small desktop (≥750px): use Figma desktop typography +
+     section padding driven by schema (default 64px top/bottom).
+     Right padding is realized via content max-width:495 to stay
+     responsive below the 1728px design viewport. */
+  @media screen and (min-width: 750px) {
     .collection-hero {
-      padding-block-start: 100px;
-      padding-block-end: 24px;
-      padding-inline: 18px;
+      padding-block-start: var(--collection-hero-padding-top, 64px);
+      padding-block-end: var(--collection-hero-padding-bottom, 64px);
+      padding-inline-start: 90px;
+      padding-inline-end: 90px;
     }
 
     .collection-hero__content {
-      gap: 12px;
-      max-width: 100%;
+      gap: 24px;
+      max-width: 495px;
     }
 
     .collection-hero__heading {
-      font-size: 30px;
-      line-height: 36px;
-      letter-spacing: -0.6px;
+      font-size: 56px;
+      line-height: 73px;
+      letter-spacing: -1.12px;
     }
 
     .collection-hero__description {
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 0.14px;
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: 0;
+    }
+  }
+
+  /* Design viewport (≥1728px): apply Figma exact paddings
+     64/1143/64/90 literally. The max-width:495 above already gives
+     the same visual at smaller viewports; the literal padding here
+     just makes the exact spec values appear in the cascade. */
+  @media screen and (min-width: 1728px) {
+    .collection-hero {
+      padding-inline-start: 90px;
+      padding-inline-end: 1143px;
     }
   }
 {% endstylesheet %}
