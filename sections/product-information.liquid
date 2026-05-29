@@ -397,6 +397,12 @@
   .product-information .slideshow-controls__thumbnails .slideshow-control:not([aria-selected='true']) {
     border: 1px solid transparent;
   }
+
+  /* Override object-fit to contain so product images are fully visible (not cropped) within the square aspect ratio container */
+  .product-information .media-fit-cover :is(img, .deferred-media__poster-image) {
+    object-fit: contain;
+    background-color: var(--color-background);
+  }
 {% endstylesheet %}
 
 {% schema %}
