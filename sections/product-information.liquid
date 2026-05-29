@@ -403,6 +403,28 @@
     object-fit: contain;
     background-color: var(--color-background);
   }
+
+  /* PDP Review block overrides — match Figma typography/color */
+  .product-information .rating-wrapper {
+    gap: 10px;
+  }
+
+  .product-information .rating-wrapper .rating-count {
+    color: var(--color-foreground);
+    line-height: 25px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-information .rating-wrapper .rating-count {
+      font-size: 0.875rem;
+      line-height: 20px;
+      letter-spacing: -0.14px;
+    }
+
+    .product-information .rating-wrapper .rating {
+      --star-size: 12px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
