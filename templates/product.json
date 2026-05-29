@@ -258,6 +258,7 @@
         }
       },
       "settings": {
+        "show_breadcrumbs": true,
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
         "equal_columns": false,
