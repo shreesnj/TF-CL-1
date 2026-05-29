@@ -443,6 +443,37 @@
       aspect-ratio: 1;
     }
   }
+
+  /* ============================================================
+   * PDP Image gallery: light-blue background (Figma #D9E8F4-ish)
+   * Figma shows the product image area sitting on a soft blue
+   * panel that runs full-bleed on mobile and wraps the gallery on
+   * desktop. Target the gallery container so the buy box on the
+   * right keeps its white background.
+   * ============================================================ */
+  .product-information .product-media-gallery,
+  .product-information [ref="mediaGalleryContainer"],
+  .product-information slideshow-component {
+    background-color: #E6F0F8;
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-information .product-media-gallery,
+    .product-information slideshow-component {
+      background-color: #E6F0F8;
+    }
+  }
+
+  /* PDP subtitle ("POWERED BY AFFINITY® FILTRATION TECHNOLOGY"):
+     small caps muted under the title (Figma). */
+  .product-information .text-block--subtitle_intro,
+  .product-information [class*='subtitle_intro'] {
+    color: var(--color-foreground-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
 {% endstylesheet %}
 
 {% schema %}
