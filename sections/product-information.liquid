@@ -425,6 +425,24 @@
       --star-size: 12px;
     }
   }
+
+  /* Desktop: enforce square aspect ratio on thumbnails */
+  @media screen and (min-width: 750px) {
+    .product-information .slideshow-controls__thumbnails .slideshow-control {
+      aspect-ratio: 1;
+    }
+  }
+
+  /* Mobile: override thumbnail-width CSS variable and enforce square aspect ratio */
+  @media screen and (max-width: 749px) {
+    .product-information .media-gallery__mobile-controls[thumbnails] {
+      --thumbnail-width: 60px;
+    }
+
+    .product-information .slideshow-controls__thumbnails .slideshow-control {
+      aspect-ratio: 1;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
