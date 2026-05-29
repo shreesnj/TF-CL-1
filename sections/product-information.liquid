@@ -359,6 +359,48 @@
   }
 {% endstylesheet %}
 
+{% stylesheet %}
+  /* Thumbnail gallery overrides to match Figma specs */
+
+  /* Desktop (>=750px): 100x100 thumbnails, 20px gap */
+  @media screen and (min-width: 750px) {
+    .product-information .slideshow-controls__thumbnails {
+      gap: 20px;
+    }
+
+    .product-information .slideshow-controls__thumbnails .slideshow-control {
+      width: 100px !important;
+      height: 100px;
+      box-sizing: border-box;
+    }
+  }
+
+  /* Mobile (<750px): 60x60 thumbnails, 12px gap */
+  @media screen and (max-width: 749px) {
+    .product-information .slideshow-controls__thumbnails {
+      gap: 12px;
+    }
+
+    .product-information .slideshow-controls__thumbnails .slideshow-control {
+      width: 60px !important;
+      height: 60px;
+      box-sizing: border-box;
+    }
+  }
+
+  /* Selected thumbnail: 1px solid #202635 border */
+  .product-information .slideshow-controls__thumbnails .slideshow-control:is([aria-selected='true']) {
+    outline: none;
+    outline-offset: 0;
+    border: 1px solid #202635;
+  }
+
+  /* Non-selected: transparent border for consistent box sizing */
+  .product-information .slideshow-controls__thumbnails .slideshow-control:not([aria-selected='true']) {
+    border: 1px solid transparent;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.product_information",
